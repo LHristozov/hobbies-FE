@@ -1,0 +1,18 @@
+<h3>Send To:</h3>
+<p-autoComplete [(ngModel)]="user" [suggestions]="filteredUsersList"
+(onSelect)="setUserId($event)" (completeMethod)="filter($event)"
+ field="username" [size]="50" placeholder="Begin writing username" [minlength]="1"
+ [forceSelection]="true" >
+</p-autoComplete>
+
+
+<h3 class="first">Default</h3>
+
+  <div>
+    <h3>Message: </h3>
+    <textarea [(ngModel)]="message.content" placeholder="begin writing your message"
+      rows="7" cols="60" pInputTextarea></textarea>
+  </div>
+
+  <button pButton type="button" (click)="sendMessage()" lable="Send Message">Send</button>
+

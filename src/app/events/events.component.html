@@ -1,0 +1,18 @@
+EVENTS
+<!-- <div *ngFor="let event of events">
+    <div [class.active]="event.name === 'Bla1'">{{event.name}} {{event.categories | json}} </div>
+</div> -->
+
+
+<div *ngFor="let event of events">
+    <div [routerLink]="['/home/event-info', event.name]" routerLinkActive="active">
+      <a>{{event.name | json}}</a>
+      <a>{{event.destination.netImage | json}}</a>
+      <img [src]="event.destination.netImage" height="42" width="42" class="figure-img img-fluid rounded" alt="a figure.">    </div>
+  </div>
+
+
+
+<div>
+  <a class="ui button" routerLink="/home/new-event" routerLinkActive="active">Create new event</a>
+</div>

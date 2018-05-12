@@ -1,0 +1,112 @@
+<link rel="stylesheet" href="https://unpkg.com/semantic-ui-calendar/dist/calendar.min.css">
+<div class="container height" >
+  <h1>New Events Form</h1>
+
+  <form (ngSubmit)="onSubmit()" #eventForm="ngForm">
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input type="text" class="form-control" id="name" required [(ngModel)]="model.name" name="name" #name="ngModel">
+      <div [hidden]="name.valid || name.pristine" class="ui message alert alert-danger">
+        Field is required
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="description">Description</label>
+      <input type="text" class="form-control" id="description" required [(ngModel)]="model.description" name="description" #description="ngModel">
+      <div [hidden]="description.valid || description.pristine" class="ui message alert alert-danger">
+        Field is required
+      </div>
+    </div>
+
+
+    <div class="ui segments">
+        <div class="ui segment">
+            <p>Single Select (with <code>selection</code> class applied)</p>
+            <sui-select class="selection"
+                        [(ngModel)]="model.destination"
+                        [options]="destinations"
+                        labelField="name"
+                        name="destination"
+                        #destination="ngModel"
+                        #select>
+                <sui-select-option *ngFor="let option of select.filteredOptions"
+                                   [value]="option">
+                </sui-select-option>
+            </sui-select>
+        </div>
+    </div>
+
+
+    <div class="ui form">
+        <div class="field">
+            <label>Date</label>
+            <div class="ui left icon input">
+                <i class="calendar icon"></i>
+                <input suiDatepicker
+                       [(ngModel)]="model.eventDate"
+                       [pickerUseNativeOnMobile]="false"
+                       name="date"
+                       #date="ngModel">
+
+            </div>
+        </div>
+        <p>Selected Date: {{ model.eventDate }}</p>
+    </div>
+
+    <p>MAP:</p>
+    <!-- this creates a google map on the page with the given lat/lng from -->
+    <!-- the component as the initial center of the map: -->
+    <agm-map
+    [latitude]="lat"
+    [longitude]="lng"
+    [zoom]="zoom"
+    [disableDefaultUI]="false"
+    [zoomControl]="false"
+    (mapClick)="mapClicked($event)">
+
+    <agm-marker
+        *ngFor="let m of markers; let i = index"
+        (markerClick)="clickedMarker(m.label, i)"
+        [latitude]="m.lat"
+        [longitude]="m.lng"
+        [label]="m.label"
+        [markerDraggable]="m.draggable"
+        (dragEnd)="markerDragEnd(m, $event)">
+      <agm-info-window>
+        <strong>{{lat}} and {{lng}}</strong>
+      </agm-info-window>
+    </agm-marker>
+  </agm-map>
+
+  <label for="name">Meeting Point Name</label>
+  <input type="text" class="form-control" id="meetingPointName" required [(ngModel)]="meetingPoint.name" name="name" #name="ngModel">
+  <div [hidden]="name.valid || name.pristine" class="ui message alert alert-danger">
+    Field is required
+  </div>
+
+  <label for="name">Meeting Point Additional Information</label>
+  <input type="text" class="form-control" id="meetingPointName" required [(ngModel)]="meetingPoint.description" name="description" #name="ngModel">
+  <div [hidden]="name.valid || name.pristine" class="ui message alert alert-danger">
+    Field is required
+  </div>
+<p>{{meetingPoint.name}}</p>
+<p>{{meetingPoint.description}}</p>
+
+
+    <p>
+    <div>
+      <button type="submit" class="btn btn-success" [disabled]="!eventForm.form.valid">Submit</button>
+    </div>
+  </form>
+
+
+  {{model | json}}
+
+
+</div>
+<p>
+
+
+
+  <!-- <!-- {{model | json}}  -->

@@ -1,0 +1,13 @@
+<h1>Destinations</h1>
+<div *ngFor="let destination of destinations">
+  <div [routerLink]="['/home/destination-info', destination.name]" routerLinkActive="active">
+    <a>{{destination.name | json}}</a>
+    <!-- <a>{{destination.netImage | json}}</a> -->
+    <img [src]="destination.netImage" height="42" width="42" class="figure-img img-fluid rounded" alt="a figure.">
+
+  </div>
+  <!-- {{destination | json}} -->
+</div>
+<div>
+  <a class="ui button" routerLink="/home/new-destination" routerLinkActive="active">Create new destination</a>
+</div>

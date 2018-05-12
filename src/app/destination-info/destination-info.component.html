@@ -1,0 +1,29 @@
+<a>Destination INfo page</a>
+<a>{{name}}</a>
+<a>{{sub | json}}</a>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<a>{{imgs | json}}</a>
+
+<div *ngFor="let img of imgs">
+  <img [src]="img" height="42" width="42" class="figure-img img-fluid rounded" alt="a figure.">
+
+</div>
+
+<div class="ui-g-12 ui-md-4">
+  <p-scrollPanel [style]="{width: '100%', height: '200px'}" styleClass="destination-comments">
+    <div style="padding:1em;line-height:1.5;">
+      <div *ngFor="let comment of comments">
+        <a>{{comment}}</a>
+      </div>
+    </div>
+  </p-scrollPanel>
+</div>
+
+<div class="send-button">
+  <div class="send" (click)="saveDestinationComment(input.value)">
+  </div>
+  <input id="input" type="text" #input>
+</div>

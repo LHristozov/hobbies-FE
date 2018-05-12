@@ -1,1 +1,108 @@
 /* You can add global styles to this file, and also import other style files */
+@import '../node_modules/primeng/resources/primeng.min.css';
+@import '../node_modules/primeng/resources/themes/omega/theme.css';
+
+html,
+body,
+.page {
+  height: 100%; /* needed for proper layout */
+}
+
+body {
+  overflow: hidden;
+}
+
+
+.page {
+    display: flex;
+    flex-direction: column;
+}
+
+
+
+h1 {
+  color: #369;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 250%;
+}
+
+.sidenav {
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+}
+
+.sidenav a {
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+}
+
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+.header{
+  flex: 0 0 auto;
+  background-color: #dcdcdc;
+}
+
+.page-content {
+  flex: 1 1 auto;
+  position: relative;/* need this to position inner content */
+  overflow-y: auto;
+  display: flex;
+}
+
+.active {
+  color: blue!important;
+}
+
+
+h1 {
+  color: #369;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 250%;
+}
+
+.sidenav {
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+}
+
+.sidenav a {
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+}
+
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+.header{
+  flex: 0 0 auto;
+  background-color: #dcdcdc;
+}
+
+.page-content {
+  flex: 1 1 auto;
+  position: relative;/* need this to position inner content */
+  overflow-y: auto;
+  display: flex;
+}
+
+.active {
+  color: blue!important;
+}
+
+

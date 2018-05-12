@@ -1,0 +1,58 @@
+<div><a>Event INfo page</a></div>
+
+<p></p>
+<a>Name of Event:</a>
+<a>{{name}}</a>
+<p></p>
+<a>Destination: </a>
+<a>{{destination | json}}</a>
+<p></p>
+
+
+
+
+<a>{{event | json}}</a>
+
+<div *ngFor="let img of imgs">
+     <img [src]="img" height="42" width="42" class="figure-img img-fluid rounded" alt="a figure.">
+</div>
+
+
+  <button pButton type="button" (click)="registerForEvent()" lable="Register for Event">Register for Event</button>
+
+
+
+<div class="ui-g-12 ui-md-4">
+    <a>COMMENTS: </a>
+    <p-scrollPanel [style]="{width: '100%', height: '200px'}" styleClass="event-comments">
+      <div style="padding:1em;line-height:1.5;">
+        <div *ngFor="let comment of comments">
+          <a>{{comment}}</a>
+
+        </div>
+      </div>
+    </p-scrollPanel>
+  </div>
+
+  <div class="ui-g-12 ui-md-4">
+    <a>PARTICIPANTS: </a>
+    <p-scrollPanel [style]="{width: '100%', height: '200px'}" styleClass="event-comments">
+      <div style="padding:1em;line-height:1.5;">
+        <div *ngFor="let user of participants">
+            <div [routerLink]="['/home/user-info', user]" routerLinkActive="active">
+              <a>{{user}}</a>
+            </div>
+
+        </div>
+      </div>
+    </p-scrollPanel>
+  </div>
+
+  {{owner | json}}
+
+
+  <div class="send-button">
+    <div class="send" (click)="saveDestinationComment(input.value)">
+    </div>
+    <input id="input" type="text" #input>
+  </div>

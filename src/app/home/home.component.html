@@ -1,0 +1,52 @@
+
+<div class="header">
+    <div>HOME</div>
+
+    <div>
+      <a [routerLink]="['/login']">Logout</a>
+    </div>
+
+    <div><a routerLink="/home/user-profile" routerLinkActive="active">My Profile</a></div>
+
+    <h3 class="first">Search:</h3>
+    <p-autoComplete [(ngModel)]="event" [suggestions]="filteredEventsSingle"
+    (onSelect)="goToSelected($event)" (completeMethod)="filterEventsSingle($event)"
+    field="name" [size]="50" placeholder="Events" [minlength]="1"
+    [forceSelection]="true">
+    </p-autoComplete>
+
+    <div>
+        <a routerLink="/home/messages" routerLinkActive="active">Messages</a>
+      </div>
+
+  </div>
+  <div class="page-content">
+    <div class="sidenav">
+      <a routerLink="/home/events" routerLinkActive="active">Event</a>
+      <a routerLink="/home/destinations" routerLinkActive="active">Destination</a>
+      <a routerLink="/home/global-chat" routerLinkActive="active">Chat</a>
+    </div>
+
+    <app-alert></app-alert>
+
+  <router-outlet></router-outlet>
+
+
+  </div>
+
+
+
+    <!-- <div class="col-md-6 col-md-offset-3">
+        <h1>Hi {{currentUser.firstName}}!</h1>
+        <p>You're logged in with Angular 2!!</p>
+        <h3>All registered users:</h3>
+        <ul>
+            <li *ngFor="let user of users">
+                {{user.username}} ({{user.firstName}} {{user.lastName}})
+                - <a (click)="deleteUser(user.id)">Delete</a>
+            </li>
+        </ul>
+        <p><a [routerLink]="['/login']">Logout</a></p>
+      </div> -->
+
+
