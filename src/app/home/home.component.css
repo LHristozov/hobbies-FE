@@ -1,32 +1,33 @@
-h1 {
-  color: #369;
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 250%;
-}
-
-.sidenav {
-  z-index: 1;
-  top: 0;
-  left: 0;
-  background-color: #111;
-  overflow-x: hidden;
-}
-
-.sidenav a {
-  padding: 6px 8px 6px 16px;
-  text-decoration: none;
-  font-size: 25px;
-  color: #818181;
-  display: block;
-}
-
-.sidenav a:hover {
-  color: #f1f1f1;
-}
-
 .header{
   flex: 0 0 auto;
   background-color: #dcdcdc;
+  display: flex;
+  justify-content: space-between;
+}
+
+.header a {
+  align-self: center;
+  font-size: 25px;
+  color: black;
+  margin-left: 10px;
+}
+
+.header-navigation {
+  display: flex;
+}
+
+.username {
+  align-self: center;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.header a > i {
+  color: gray;
+}
+
+.active > i {
+  color: red!important;
 }
 
 .page-content {
@@ -34,51 +35,35 @@ h1 {
   position: relative;/* need this to position inner content */
   overflow-y: auto;
   display: flex;
+  padding: 30px;
+  max-height: 100%;
 }
 
-.active {
-  color: blue!important;
+.avatar {
+  height: 50px;
+  width: 50px;
+  border-radius: 50px;
+  background-color: maroon;
+  color: white;
+  text-align: center;
+  font-size: 30px;
+  line-height: 50px;
 }
 
-
-h1 {
-  color: #369;
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 250%;
+.ui.primary.dropdown.button {
+  background-color: initial;
 }
 
-.sidenav {
-  z-index: 1;
-  top: 0;
-  left: 0;
-  background-color: #111;
-  overflow-x: hidden;
+:host /deep/ .ui-inputtext.ui-widget.ui-state-default.ui-corner-all.ui-autocomplete-input {
+  border-radius: 10px;
 }
 
-.sidenav a {
-  padding: 6px 8px 6px 16px;
-  text-decoration: none;
-  font-size: 25px;
-  color: #818181;
-  display: block;
+:host /deep/ .menu.transition {
+  right: 7px;
+  left: initial;
 }
 
-.sidenav a:hover {
-  color: #f1f1f1;
-}
-
-.header{
-  flex: 0 0 auto;
-  background-color: #dcdcdc;
-}
-
-.page-content {
-  flex: 1 1 auto;
-  position: relative;/* need this to position inner content */
-  overflow-y: auto;
-  display: flex;
-}
-
-.active {
-  color: blue!important;
+.header-search {
+  align-self: center;
+  margin-left: 20px;
 }

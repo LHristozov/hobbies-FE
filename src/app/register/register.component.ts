@@ -7,7 +7,9 @@ import { Location } from '@angular/common';
 
 @Component({
     moduleId: module.id,
-    templateUrl: 'register.component.html'
+    templateUrl: 'register.component.html',
+    selector: 'app-register',
+    styleUrls: ['./register.component.css'],
 })
 
 export class RegisterComponent {

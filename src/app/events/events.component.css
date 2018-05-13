@@ -1,0 +1,13 @@
+:host {
+  display: flex;
+  width: 100%;
+}
+
+.ui.three.column.grid {
+  width: 100%;
+}
+
+:host /deep/ .ui.card {
+  margin: 1em auto;
+  width: 90%;
+}

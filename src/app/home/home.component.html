@@ -1,52 +1,43 @@
-
 <div class="header">
-    <div>HOME</div>
-
-    <div>
-      <a [routerLink]="['/login']">Logout</a>
+  <div class="header-navigation">
+    <a routerLink="/home" [routerLinkActiveOptions]="{exact:
+        true}" routerLinkActive="active">
+      <i class="home icon"></i> HOME</a>
+    <a routerLink="/home/events" routerLinkActive="active">
+      <i class="bullhorn icon"></i>Event</a>
+    <a routerLink="/home/destinations" routerLinkActive="active">
+      <i class="map icon"></i>Destination</a>
+    <a routerLink="/home/global-chat" routerLinkActive="active">
+      <i class="comment alternate icon"></i>Chat</a>
+    <a routerLink="/home/messages" routerLinkActive="active">
+      <i class="address card icon"></i>Messages</a>
+    <div class="header-search">
+      <i class="search icon"></i>
+      <p-autoComplete [(ngModel)]="event" [suggestions]="filteredEventsSingle" (onSelect)="goToSelected($event)" (completeMethod)="filterEventsSingle($event)"
+        field="name" [size]="50" placeholder="Search for Events" [minlength]="1" [forceSelection]="true">
+      </p-autoComplete>
     </div>
+  </div>
+  <div style="display: flex;">
+    <span class="username">{{currentUser?.username}}</span>
+    <div class="ui primary dropdown button" suiDropdown>
+      <div class="avatar">{{currentUser?.username.charAt(0).toUpperCase()}}</div>
+      <div class="menu" suiDropdownMenu>
+        <a routerLink="/home/user-profile" routerLinkActive="active" class="item">
+          <i class="user icon"></i>My Profile</a>
+        <a [routerLink]="['/login']" class="item">
+          <i class="sign out alternate icon"></i>Logout</a>
 
-    <div><a routerLink="/home/user-profile" routerLinkActive="active">My Profile</a></div>
-
-    <h3 class="first">Search:</h3>
-    <p-autoComplete [(ngModel)]="event" [suggestions]="filteredEventsSingle"
-    (onSelect)="goToSelected($event)" (completeMethod)="filterEventsSingle($event)"
-    field="name" [size]="50" placeholder="Events" [minlength]="1"
-    [forceSelection]="true">
-    </p-autoComplete>
-
-    <div>
-        <a routerLink="/home/messages" routerLinkActive="active">Messages</a>
       </div>
-
-  </div>
-  <div class="page-content">
-    <div class="sidenav">
-      <a routerLink="/home/events" routerLinkActive="active">Event</a>
-      <a routerLink="/home/destinations" routerLinkActive="active">Destination</a>
-      <a routerLink="/home/global-chat" routerLinkActive="active">Chat</a>
     </div>
-
-    <app-alert></app-alert>
-
-  <router-outlet></router-outlet>
-
-
   </div>
 
-
-
-    <!-- <div class="col-md-6 col-md-offset-3">
-        <h1>Hi {{currentUser.firstName}}!</h1>
-        <p>You're logged in with Angular 2!!</p>
-        <h3>All registered users:</h3>
-        <ul>
-            <li *ngFor="let user of users">
-                {{user.username}} ({{user.firstName}} {{user.lastName}})
-                - <a (click)="deleteUser(user.id)">Delete</a>
-            </li>
-        </ul>
-        <p><a [routerLink]="['/login']">Logout</a></p>
-      </div> -->
-
-
+</div>
+<div class="page-content">
+  <!-- <div class="sidenav">
+    <a routerLink="/home/events" routerLinkActive="active">Event</a>
+    <a routerLink="/home/destinations" routerLinkActive="active">Destination</a>
+    <a routerLink="/home/global-chat" routerLinkActive="active">Chat</a>
+  </div> -->
+  <router-outlet></router-outlet>
+</div>

@@ -1,0 +1,21 @@
+.outer {
+  background-color: #DADADA;
+  height: 100%;
+}
+.outer > .grid {
+  height: 100%;
+}
+.image {
+  margin-top: -100px;
+}
+.column {
+  max-width: 450px;
+}
+
+.redAlert {
+  color: crimson;
+  border: 1px solid;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

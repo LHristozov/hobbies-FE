@@ -24,8 +24,8 @@ const appRoutes: Routes = [
           { path: 'new-event', component: NewEventComponent, canActivate: [AuthGuard] },
           { path: 'user-profile', component: UserProfileComponent, canActivate: [AuthGuard] },
           { path: 'global-chat', component: GlobalChatComponent, canActivate: [AuthGuard] },
-          { path: 'destination-info/:name', component: DestinationInfoComponent, canActivate: [AuthGuard] },
-          { path: 'event-info/:name', component: EventInfoComponent, canActivate: [AuthGuard] },
+          { path: 'destinations/:name', component: DestinationInfoComponent, canActivate: [AuthGuard] },
+          { path: 'events/:name', component: EventInfoComponent, canActivate: [AuthGuard] },
           { path: 'user-info/:name', component: UserInfoComponent, canActivate: [AuthGuard] },
           { path: 'messages', component: MessagesComponent, canActivate: [AuthGuard] }
       ]
@@ -37,18 +37,4 @@ const appRoutes: Routes = [
   { path: '**', redirectTo: 'home/events' }
 ];
 
-
-
-
-
-
 export const routing = RouterModule.forRoot(appRoutes);
-
-
-
-// const appRoutes: Routes = [
-//   { path: '', redirectTo: '/events', pathMatch: 'full' },
-//   { path: 'events', component: EventsComponent },
-//   { path: 'destinations', component: DestinationsComponent },
-//   { path: 'new-destination', component: NewDestinationComponent }
-// ];

@@ -1,11 +1,6 @@
-EVENTS
+<!-- EVENTS -->
 <!-- <div *ngFor="let event of events">
-    <div [class.active]="event.name === 'Bla1'">{{event.name}} {{event.categories | json}} </div>
-</div> -->
-
-
-<div *ngFor="let event of events">
-    <div [routerLink]="['/home/event-info', event.name]" routerLinkActive="active">
+    <div [routerLink]="['/home/events', event.name]" routerLinkActive="active">
       <a>{{event.name | json}}</a>
       <a>{{event.destination.netImage | json}}</a>
       <img [src]="event.destination.netImage" height="42" width="42" class="figure-img img-fluid rounded" alt="a figure.">    </div>
@@ -15,4 +10,69 @@ EVENTS
 
 <div>
   <a class="ui button" routerLink="/home/new-event" routerLinkActive="active">Create new event</a>
+</div> -->
+
+<div class="ui three column grid">
+  <div class="column">
+    <div class="ui raised segment">
+      <a class="ui red ribbon label">Past</a>
+      <div *ngFor="let event of events" style="margin: 1em auto; cursor: pointer;" [routerLink]="['/home/events', event.name]">
+          <div *ngIf="moment(event.eventDate).isBefore(moment())"
+          class="ui card">
+          <div class="image">
+            <img [src]="event.destination.netImage">
+          </div>
+          <div class="content">
+            <a class="header">{{event.name}}</a>
+            <div class="meta">
+              <span class="date">Created in {{event.eventDate | date}}</span>
+            </div>
+            <div class="description">
+              {{event.description}}
+            </div>
+          </div>
+          <div class="extra content">
+            <a>
+              <i class="user icon"></i>
+              {{event.participants.length}} Participants
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="column">
+    <div class="ui segment">
+      <a class="ui orange right ribbon label">Upcomming</a>
+      <div *ngFor="let event of events" style="margin: 1em auto; cursor: pointer;" [routerLink]="['/home/events', event.name]">
+          <div  *ngIf="moment(event.eventDate).isAfter(moment())"
+          class="ui card">
+          <div class="image">
+            <img [src]="event.destination.netImage">
+          </div>
+          <div class="content">
+            <a class="header">{{event.name}}</a>
+            <div class="meta">
+              <span class="date">Created in {{event.eventDate | date}}</span>
+            </div>
+            <div class="description">
+              {{event.description}}
+            </div>
+          </div>
+          <div class="extra content">
+            <a>
+              <i class="user icon"></i>
+              {{event.participants.length}} Participants
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="column">
+    <div class="ui segment">
+      <a class="ui orange right ribbon label">Next</a>
+      <p></p>
+    </div>
+  </div>
 </div>

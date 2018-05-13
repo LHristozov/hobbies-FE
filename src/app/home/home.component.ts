@@ -36,7 +36,7 @@ export class HomeComponent implements OnInit {
 
     goToSelected(event) {
        this.asd =  event.name;
-       this.router.navigate(['home/event-info/' + event.name]);
+       this.router.navigate(['home/events/' + event.name]);
        this.event = null;
     }
 

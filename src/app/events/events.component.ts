@@ -1,15 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { EventsService } from './events.service';
 import { Event } from '@angular/router/src/events';
+import * as moment from 'moment/moment';
 
 @Component({
   selector: 'app-events',
   templateUrl: './events.component.html',
-  providers: [EventsService]
+  providers: [EventsService],
+  styleUrls: ['events.component.css']
 })
 export class EventsComponent implements OnInit {
     events: any;
     netImage: any = '';
+    moment = moment;
 
   constructor(private eventsService: EventsService) { }
 
