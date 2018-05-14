@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { EventsService } from './events.service';
 import { Event } from '@angular/router/src/events';
 import * as moment from 'moment/moment';

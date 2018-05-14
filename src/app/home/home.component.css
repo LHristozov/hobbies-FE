@@ -3,6 +3,8 @@
   background-color: #dcdcdc;
   display: flex;
   justify-content: space-between;
+  height: 72px;
+  overflow: hidden;
 }
 
 .header a {
@@ -35,8 +37,8 @@
   position: relative;/* need this to position inner content */
   overflow-y: auto;
   display: flex;
-  padding: 30px;
-  max-height: 100%;
+  padding: 0;
+  height: calc(100% - 72px);
 }
 
 .avatar {
