@@ -5,7 +5,7 @@ import { DestinationsService } from './destinations.service';
   selector: 'app-destinations',
   templateUrl: './destinations.component.html',
   providers: [DestinationsService]
-})
+}) 
 export class DestinationsComponent implements OnInit  {
   destinations: any;
   netImage: any = '';
