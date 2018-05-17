@@ -18,7 +18,7 @@ import { UserProfileService } from '../user-profile/user-profile.service';
 })
 export class UserInfoComponent implements OnInit, OnDestroy {
   name: String;
-  user: User = new User();
+  user: any = [];
   netImage: any = '';
 
 
@@ -41,11 +41,12 @@ export class UserInfoComponent implements OnInit, OnDestroy {
     this.userProfileService.getUserByUsername(username).then(res => {
       console.log(`Result ${res}`);
       console.log(res['firstname']);
-      this.user.firstname = res['firstname'];
-      this.user.lastname = res['lastname'];
-      this.user.username = res['username'];
-      this.user.email = res['email'];
-      this.user.id = res['id'];
+      this.user = res;
+      // this.user.firstname = res['firstname'];
+      // this.user.lastname = res['lastname'];
+      // this.user.username = res['username'];
+      // this.user.email = res['email'];
+      // this.user.id = res['id'];
       this.user.image = res['image'];
       this.netImage = '../assets/upload-dir/' + this.user.id + '/' + this.user.image;
       console.log(this.user);
