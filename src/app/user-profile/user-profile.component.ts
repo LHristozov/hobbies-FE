@@ -15,9 +15,10 @@ import { HttpClient, HttpResponse, HttpEventType } from '@angular/common/http';
 })
 
 export class UserProfileComponent implements OnInit {
-  user: User = new User();
+  user: any = [];
   loading = false;
   netImage: any = '';
+  userInfo: any = [];
 
   selectedFiles: FileList;
   currentFileUpload: File;
@@ -37,13 +38,15 @@ export class UserProfileComponent implements OnInit {
 
     this.userProfileService.getUserByUsername(username).then(res => {
       console.log(`Result ${res}`);
-      console.log(res['firstname']);
-      this.user.firstname = res['firstname'];
-      this.user.lastname = res['lastname'];
-      this.user.username = res['username'];
-      this.user.email = res['email'];
-      this.user.id = res['id'];
-      this.user.image = res['image'];
+      this.user = res;
+
+      // this.userInfo = res['userInfo'];
+      // this.user.firstname = res['firstname'];
+      // this.user.lastname = res['lastname'];
+      // this.user.username = res['username'];
+      // this.user.email = res['email'];
+      // this.user.id = res['id'];
+      // this.user.image = res['image'];
       this.netImage = '../assets/upload-dir/' + this.user.id + '/' + this.user.image;
       console.log(this.user);
       }).catch(err => {
@@ -53,6 +56,7 @@ export class UserProfileComponent implements OnInit {
 
 update() {
   this.loading = true;
+
   this.userService.update(this.user).then(res => {
               this.alertService.success('update successful', true);
            //   this.location.back();
