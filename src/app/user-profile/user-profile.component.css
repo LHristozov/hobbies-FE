@@ -1,0 +1,18 @@
+.profileDefaultPic {
+   height: 110px;
+  width: 110px;
+  border-radius: 68px;
+  background-color: maroon;
+  color: white;
+  text-align: center;
+  font-size: 95px;
+  line-height: 110px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.profilePicBig {
+  height: 150px !important;
+  width: 150px !important;
+}

@@ -8,6 +8,7 @@ import { AgmCoreModule } from '@agm/core';
 import { ScrollPanelModule } from 'primeng/scrollpanel';
 import { ButtonModule } from 'primeng/button';
 import { AutoCompleteModule } from 'primeng/autocomplete';
+import { FileUploadModule } from 'primeng/fileupload';
 
 import { AppComponent } from './app.component';
 import { EventsComponent } from './events/events.component';
@@ -72,6 +73,7 @@ import { MessagesComponent } from './messages/messages.component';
     ButtonModule,
     FormsModule,
     AutoCompleteModule,
+    FileUploadModule,
     HttpClientModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyD_7n6H1oClDLm-rYpFsH7PIN0NJgDIwrM'

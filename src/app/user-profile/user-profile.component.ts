@@ -5,6 +5,7 @@ import { Location } from '@angular/common';
 import { AlertService } from '../directives/alert.service';
 import { UserService } from '../user/user.service';
 import { HttpClient, HttpResponse, HttpEventType } from '@angular/common/http';
+import { Message } from 'primeng/components/common/message';
 
 
 @Component({
@@ -19,6 +20,9 @@ export class UserProfileComponent implements OnInit {
   loading = false;
   netImage: any = '';
   userInfo: any = [];
+  hasImage: any = false;
+  msgs: Message[];
+  uploadedFiles: any[] = [];
 
   selectedFiles: FileList;
   currentFileUpload: File;
@@ -47,6 +51,9 @@ export class UserProfileComponent implements OnInit {
       // this.user.email = res['email'];
       // this.user.id = res['id'];
       // this.user.image = res['image'];
+      if (this.user.image == null) {
+        this.hasImage = true;
+      }
       this.netImage = '../assets/upload-dir/' + this.user.id + '/' + this.user.image;
       console.log(this.user);
       }).catch(err => {
@@ -68,19 +75,40 @@ update() {
 }
 
 
-upload() {
+upload(event) {
   this.progress.percentage = 0;
+  debugger;
+  for (const file of event.files) {
+    this.uploadedFiles.push(file);
 
-  this.currentFileUpload = this.selectedFiles.item(0);
-  this.userProfileService.pushFileToStorage(this.currentFileUpload, this.user.id)
-  .then(res => {
-    this.netImage = '../assets/upload-dir/' + this.user.id + '/' + this.user.image;
-    console.log(res);
-    }).catch(err => {
-    console.error(err);
-  });
+    this.userProfileService.pushFileToStorage(file, this.user.id)
+    .then(res => {
+      this.netImage = '../assets/upload-dir/' + this.user.id + '/' + this.user.image;
+      console.log(res);
+      }).catch(err => {
+      console.error(err);
+    });
 
-  this.selectedFiles = undefined;
+
+  }
+
+  this.msgs = [];
+  this.msgs.push({severity: 'info', summary: 'File Uploaded', detail: ''});
+
+  // this.currentFileUpload = this.selectedFiles.item(0);
+  // this.userProfileService.pushFileToStorage(this.currentFileUpload, this.user.id)
+  // .then(res => {
+  //   this.netImage = '../assets/upload-dir/' + this.user.id + '/' + this.user.image;
+  //   console.log(res);
+  //   }).catch(err => {
+  //   console.error(err);
+  // });
+
+  // this.selectedFiles = undefined;
+}
+
+onUpload(event) {
+
 }
 
 selectFile(event) {
