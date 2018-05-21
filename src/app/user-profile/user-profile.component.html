@@ -21,8 +21,8 @@
         </ng-template>
          <hr>
          <div>
-            <h3>Change/Upload User Photo</h3>
-            <p-fileUpload #fubauto name="demo[]" accept="image/*"
+            <h3>Change User Photo</h3>
+            <p-fileUpload #fubauto mode="basic" auto="true" name="demo[]" accept="image/*"
             maxFileSize="1000000" customUpload="true" (uploadHandler)="upload($event)" chooseLabel="Browse"></p-fileUpload>
          </div>
         </div>

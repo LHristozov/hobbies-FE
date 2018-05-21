@@ -51,7 +51,7 @@ export class UserProfileComponent implements OnInit {
       // this.user.email = res['email'];
       // this.user.id = res['id'];
       // this.user.image = res['image'];
-      if (this.user.image == null) {
+      if (this.user.image != null) {
         this.hasImage = true;
       }
       this.netImage = '../assets/upload-dir/' + this.user.id + '/' + this.user.image;
@@ -77,7 +77,6 @@ update() {
 
 upload(event) {
   this.progress.percentage = 0;
-  debugger;
   for (const file of event.files) {
     this.uploadedFiles.push(file);
 
