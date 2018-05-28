@@ -11,3 +11,17 @@ body,
 body {
   overflow: hidden;
 }
+
+.slctBtnPic .ui-widget.ui-button,
+.slctBtnPic .ui-button {
+  border: 1px solid  #607d8b !important;
+  color: #FFFFFF;
+  background:  #607d8b !important;
+  transition: background-color .2s;
+}
+
+.slctBtnPic .ui-widget.ui-button:hover,
+.slctBtnPic .ui-button:hover {
+  color: #000!important;
+  background-color: #ccc!important;
+}

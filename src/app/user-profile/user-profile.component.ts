@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { UserProfileService } from './user-profile.service';
 import { User } from '../user/user';
 import { Location } from '@angular/common';
@@ -12,7 +12,7 @@ import { Message } from 'primeng/components/common/message';
   selector: 'app-user-profile',
   templateUrl: './user-profile.component.html',
   providers: [ UserProfileService, UserService ],
-  styleUrls: ['./user-profile.component.css'],
+  styleUrls: ['./user-profile.component.css']
 })
 
 export class UserProfileComponent implements OnInit {
@@ -27,6 +27,7 @@ export class UserProfileComponent implements OnInit {
   selectedFiles: FileList;
   currentFileUpload: File;
   progress: { percentage: number } = { percentage: 0 };
+  str: any;
 
   constructor(
     private userProfileService: UserProfileService,
@@ -59,6 +60,7 @@ export class UserProfileComponent implements OnInit {
       }).catch(err => {
       console.error(err);
     });
+   this.str = this.parseJwt(currentUser);
 }
 
 update() {
@@ -91,6 +93,7 @@ upload(event) {
 
   }
 
+
   this.msgs = [];
   this.msgs.push({severity: 'info', summary: 'File Uploaded', detail: ''});
 
@@ -110,6 +113,7 @@ onUpload(event) {
 
 }
 
+
 selectFile(event) {
   const file = event.target.files.item(0);
 
@@ -120,6 +124,12 @@ selectFile(event) {
     alert('invalid format!');
   }
 
+}
+
+parseJwt (token) {
+  const base64Url = token.split('.')[1];
+  const base64 = base64Url.replace('-', '+').replace('_', '/');
+  return JSON.parse(window.atob(base64));
 }
 
 }

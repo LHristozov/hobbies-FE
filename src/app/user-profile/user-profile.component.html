@@ -1,4 +1,8 @@
-<!-- <h1>{{user | json}}</h1>
+<!-- <h1>{{user | json}}</h1> -->
+
+{{str | json}}
+
+<!--
 <h1>{{userInfo | json}}</h1> -->
 <!-- {{hasImage}} -->
 
@@ -9,40 +13,41 @@
     <div class="w3-col m3">
       <!-- Profile -->
       <div class="w3-card w3-round w3-white">
-        <div class="w3-container">
-         <h4 class="w3-center">My Profile</h4>
+        <div class="w3-container padding">
+          <h4 class="w3-center">My Profile</h4>
           <div *ngIf="hasImage;  else templateName">
             <p class="w3-center">
-                <img src="../assets/upload-dir/1/Koala.jpg" class=" profilePicBig w3-circle" style="height:106px;width:106px" alt="Avatar">
+              <img src="../assets/upload-dir/1/Koala.jpg" class=" profilePicBig w3-circle" style="height:106px;width:106px" alt="Avatar">
             </p>
           </div>
-        <ng-template #templateName>
-            <div  class="profileDefaultPic">{{user?.username.charAt(0).toUpperCase()}}</div>
-        </ng-template>
-         <hr>
-         <div>
-            <h3>Change User Photo</h3>
-            <p-fileUpload #fubauto mode="basic" auto="true" name="demo[]" accept="image/*"
-            maxFileSize="1000000" customUpload="true" (uploadHandler)="upload($event)" chooseLabel="Browse"></p-fileUpload>
-         </div>
+          <ng-template #templateName>
+            <div class="profileDefaultPic">{{user?.username.charAt(0).toUpperCase()}}</div>
+          </ng-template>
+          <hr>
+          <div class="slctBtnPic">
+
+            <p-fileUpload #fubauto  mode="basic" auto="true" name="demo[]" accept="image/*" maxFileSize="1000000" customUpload="true"
+              (uploadHandler)="upload($event)" chooseLabel="Select Picture"></p-fileUpload>
+          </div>
         </div>
       </div>
       <br>
 
       <!-- Accordion -->
-      <div class="w3-card w3-round">
+      <!-- <div class="w3-card w3-round">
         <div class="w3-white">
-          <button onclick="myFunction('Demo2')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-calendar-check-o fa-fw w3-margin-right"></i> My Events</button>
+          <button onclick="myFunction('Demo2')" class="w3-button w3-block w3-theme-l1 w3-left-align">
+            <i class="fa fa-calendar-check-o fa-fw w3-margin-right"></i> My Events</button>
           <div id="Demo2" class="w3-hide w3-container">
             <p>Some other text..</p>
           </div>
 
         </div>
-      </div>
+      </div> -->
       <br>
 
       <!-- Interests -->
-      <div class="w3-card w3-round w3-white w3-hide-small">
+      <!-- <div class="w3-card w3-round w3-white w3-hide-small">
         <div class="w3-container">
           <p>Interests</p>
           <p>
@@ -59,11 +64,11 @@
             <span class="w3-tag w3-small w3-theme-l5">Photos</span>
           </p>
         </div>
-      </div>
+      </div> -->
       <br>
 
 
-    <!-- End Left Column -->
+      <!-- End Left Column -->
     </div>
 
     <!-- Middle Column -->
@@ -73,93 +78,76 @@
         <div class="w3-col m12">
           <div class="w3-card w3-round w3-white">
             <div class="w3-container w3-padding">
-              <h6 class="w3-opacity">Social Media template by w3.css</h6>
-              <p contenteditable="true" class="w3-border w3-padding">Status: Feeling Blue</p>
-              <button type="button" class="w3-button w3-theme"><i class="fa fa-pencil"></i> &nbsp;Post</button>
+
+              <div class="col-md-6 col-md-offset-3">
+                <h2>User Profile</h2>
+                <form name="form" (ngSubmit)="f.form.valid && update()" #f="ngForm" novalidate>
+                  <div class="form-group padding" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
+                    <label for="firstname">First Name</label>
+                    <input type="text" class="form-control" name="firstname" [(ngModel)]="user.firstname" #firstname="ngModel" required />
+                    <div *ngIf="f.submitted && !firstname.valid" class="help-block">First Name is required</div>
+                  </div>
+                  <div class="form-group padding" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
+                    <label for="lastname">Last Name</label>
+                    <input type="text" class="form-control" name="lastname" [(ngModel)]="user.lastname" #lastname="ngModel" required />
+                    <div *ngIf="f.submitted && !lastname.valid" class="help-block">Last Name is required</div>
+                  </div>
+                  <div class="form-group padding" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
+                    <label for="email">Email</label>
+                    <input type="text" class="form-control" name="email" [(ngModel)]="user.email" #email="ngModel" required />
+                    <div *ngIf="f.submitted && !email.valid" class="help-block">Email is required</div>
+                  </div>
+                  <div class="form-group padding" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
+                    <label for="username">Username</label>
+                    <input type="text" class="form-control" name="username" [(ngModel)]="user.username" #username="ngModel" required />
+                    <div *ngIf="f.submitted && !username.valid" class="help-block">Username is required</div>
+                  </div>
+                  <div class="form-group padding">
+                    <label for="intrests">Interests</label>
+                    <input type="text" class="form-control" name="intrests" [(ngModel)]="user.userInfo.interests" #interests="ngModel" />
+                  </div>
+                  <div class="form-group padding">
+                    <label for="job">Job</label>
+                    <input type="text" class="form-control" name="job" [(ngModel)]="user.userInfo.job" #job="ngModel" />
+                  </div>
+                  <div class="form-group padding">
+                    <label for="livingLocation">Living Location</label>
+                    <input type="text" class="form-control" name="livingLocation" [(ngModel)]="user.userInfo.livingLocation" #livingLocation="ngModel"
+                    />
+                  </div>
+                  <div class="form-group padding" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
+                    <label for="password">Password</label>
+                    <input type="password" class="form-control" name="password" [(ngModel)]="user.password" #password="ngModel" required />
+                    <div *ngIf="f.submitted && !password.valid" class="help-block">Password is required</div>
+                  </div>
+                  <div class="form-group padding ">
+                    <button [disabled]="loading" type="button" class="w3-button w3-theme">
+                        <i class="fa fa-pencil"></i> &nbsp;Update Information
+                    </button>
+                  </div>
+
+                </form>
+              </div>
+<!--
+              <button type="button" class="w3-button w3-theme">
+                <i class="fa fa-pencil"></i> &nbsp;Post</button> -->
             </div>
           </div>
         </div>
       </div>
 
 
-    <!-- End Middle Column -->
+      <!-- End Middle Column -->
     </div>
 
-    <!-- Right Column -->
-    <div class="w3-col m2">
-      <div class="w3-card w3-round w3-white w3-center">
-        <div class="w3-container">
-          <p>Upcoming Events:</p>
-          <img src="/w3images/forest.jpg" alt="Forest" style="width:100%;">
-          <p><strong>Holiday</strong></p>
-          <p>Friday 15:00</p>
-          <p><button class="w3-button w3-block w3-theme-l4">Info</button></p>
-        </div>
-      </div>
-      <br>
-
-
-
-    <!-- End Right Column -->
-    </div>
-
-  <!-- End Grid -->
+    <!-- End Grid -->
   </div>
 
-<!-- End Page Container -->
+  <!-- End Page Container -->
 </div>
 
 
-<div class="col-md-6 col-md-offset-3">
-  <h2>User Profile</h2>
-  <form name="form" (ngSubmit)="f.form.valid && update()" #f="ngForm" novalidate>
-      <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
-          <label for="firstname">First Name</label>
-          <input type="text" class="form-control" name="firstname" [(ngModel)]="user.firstname" #firstname="ngModel" required />
-          <div *ngIf="f.submitted && !firstname.valid" class="help-block">First Name is required</div>
-      </div>
-      <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
-          <label for="lastname">Last Name</label>
-          <input type="text" class="form-control" name="lastname" [(ngModel)]="user.lastname" #lastname="ngModel" required />
-          <div *ngIf="f.submitted && !lastname.valid" class="help-block">Last Name is required</div>
-      </div>
-      <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
-        <label for="email">Email</label>
-        <input type="text" class="form-control" name="email" [(ngModel)]="user.email" #email="ngModel" required />
-        <div *ngIf="f.submitted && !email.valid" class="help-block">Email is required</div>
-    </div>
-      <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
-          <label for="username">Username</label>
-          <input type="text" class="form-control" name="username" [(ngModel)]="user.username" #username="ngModel" required />
-          <div *ngIf="f.submitted && !username.valid" class="help-block">Username is required</div>
-      </div>
-
-      <div class="form-group">
-        <label for="intrests">Interests</label>
-        <input type="text" class="form-control" name="intrests" [(ngModel)]="user.userInfo.interests" #interests="ngModel" />
-      </div>
-      <div class="form-group">
-        <label for="job">Job</label>
-        <input type="text" class="form-control" name="job" [(ngModel)]="user.userInfo.job" #job="ngModel" />
-      </div>
-      <div class="form-group">
-        <label for="livingLocation">Living Location</label>
-        <input type="text" class="form-control" name="livingLocation" [(ngModel)]="user.userInfo.livingLocation" #livingLocation="ngModel" />
-      </div>
-
-
-      <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
-          <label for="password">Password</label>
-          <input type="password" class="form-control" name="password" [(ngModel)]="user.password" #password="ngModel" required />
-          <div *ngIf="f.submitted && !password.valid" class="help-block">Password is required</div>
-      </div>
-      <div class="form-group">
-          <button [disabled]="loading" class="btn btn-primary">Update Information</button>
-      </div>
-
-  </form>
-</div>
-
+<!--
 <p></p>
 <div *ngIf="currentFileUpload" class="progress">
 	<div class="progress-bar progress-bar-info progress-bar-striped"
@@ -182,4 +170,4 @@
 
   <app-list-upload></app-list-upload>
 
-  <img [src]="netImage" height="42" width="42" class="figure-img img-fluid rounded" alt="A generic square placeholder image with rounded corners in a figure.">
+  <img [src]="netImage" height="42" width="42" class="figure-img img-fluid rounded" alt="A generic square placeholder image with rounded corners in a figure."> -->
