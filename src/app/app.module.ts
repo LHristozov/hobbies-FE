@@ -9,6 +9,7 @@ import { ScrollPanelModule } from 'primeng/scrollpanel';
 import { ButtonModule } from 'primeng/button';
 import { AutoCompleteModule } from 'primeng/autocomplete';
 import { FileUploadModule } from 'primeng/fileupload';
+import { CalendarModule } from 'primeng/calendar';
 
 import { AppComponent } from './app.component';
 import { EventsComponent } from './events/events.component';
@@ -74,6 +75,7 @@ import { MessagesComponent } from './messages/messages.component';
     FormsModule,
     AutoCompleteModule,
     FileUploadModule,
+    CalendarModule,
     HttpClientModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyD_7n6H1oClDLm-rYpFsH7PIN0NJgDIwrM'

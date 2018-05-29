@@ -12,6 +12,19 @@ body {
   overflow: hidden;
 }
 
+.calendarBtn .ui-widget.ui-button,
+.calendarBtn .ui-button {
+  border: 1px solid #607d8b !important;
+  color: #FFFFFF;
+  background: #607d8b !important;
+  transition: background-color .2s;
+}
+.calendarBtn .ui-widget.ui-button:hover,
+.calendarBtn .ui-button:hover {
+  color: #000!important;
+  background-color: #ccc!important;
+}
+
 .slctBtnPic .ui-widget.ui-button,
 .slctBtnPic .ui-button {
   border: 1px solid  #607d8b !important;
@@ -24,4 +37,20 @@ body {
 .slctBtnPic .ui-button:hover {
   color: #000!important;
   background-color: #ccc!important;
+}
+
+.full-width {
+  width: 100% !important;
+}
+
+.no-padding {
+  padding: 0 !important;
+}
+
+.no-margin {
+  margin: 0 !important;
+}
+
+.hidden {
+  display: none !important;
 }

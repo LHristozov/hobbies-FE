@@ -23,6 +23,7 @@ export class UserProfileComponent implements OnInit {
   hasImage: any = false;
   msgs: Message[];
   uploadedFiles: any[] = [];
+  birthDate: any;
 
   selectedFiles: FileList;
   currentFileUpload: File;
