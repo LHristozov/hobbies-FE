@@ -20,6 +20,9 @@ export class UserInfoComponent implements OnInit, OnDestroy {
   name: String;
   user: any = [];
   netImage: any = '';
+  hasImage: any = false;
+  usersName: String = '';
+  isOwnProfile: Boolean = false;
 
 
   private _routeSubscription: Subscription = new Subscription();
@@ -38,10 +41,23 @@ export class UserInfoComponent implements OnInit, OnDestroy {
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
     const username = currentUser.username;
 
+    if (this.name === username) {
+      this.isOwnProfile = true;
+    }
+
     this.userProfileService.getUserByUsername(username).then(res => {
       console.log(`Result ${res}`);
       console.log(res['firstname']);
       this.user = res;
+      if (this.user.image != null) {
+        this.hasImage = true;
+      }
+
+      if ((this.user.firstname).length > 0 && (this.user.lastname).length > 0 ) {
+        this.usersName = this.user.firstname + ' ' + this.user.lastname;
+      } else {
+        this.usersName = this.user.username;
+      }
       // this.user.firstname = res['firstname'];
       // this.user.lastname = res['lastname'];
       // this.user.username = res['username'];

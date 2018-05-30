@@ -1,6 +1,7 @@
-<h1>{{user | json}}</h1>
+<!-- <h1>{{user | json}}</h1>
+{{date}} -->
 
-{{str | json}}
+<!-- {{str | json}} -->
 
 <!--
 <h1>{{userInfo | json}}</h1> -->
@@ -87,9 +88,9 @@
                       <label class="labelStyle" for="firstname">First Name</label>
                     </div>
                     <div class="ui-md-8 no-padding">
-                      <input type="text" class="form-control inputStyle full-width" name="firstname" [(ngModel)]="user.firstname" #firstname="ngModel" required
+                      <input type="text" class="form-control inputStyle full-width" name="firstname" [(ngModel)]="user.firstname" #firstname="ngModel"
                       />
-                      <div *ngIf="f.submitted && !firstname.valid" class="help-block">First Name is required</div>
+                      <div *ngIf="f.submitted && !firstname.valid" class="help-block">First Name is  </div>
                     </div>
                   </div>
                   <div class="form-group padding ui-g" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
@@ -97,9 +98,9 @@
                       <label class="labelStyle" for="lastname">Last Name</label>
                     </div>
                     <div class="ui-md-8 no-padding">
-                      <input type="text" class="form-control inputStyle full-width" name="lastname" [(ngModel)]="user.lastname" #lastname="ngModel" required />
+                      <input type="text" class="form-control inputStyle full-width" name="lastname" [(ngModel)]="user.lastname" #lastname="ngModel"   />
 
-                      <div *ngIf="f.submitted && !lastname.valid" class="help-block">Last Name is required</div>
+                      <div *ngIf="f.submitted && !lastname.valid" class="help-block">Last Name is  </div>
                     </div>
                   </div>
                   <div class="form-group padding ui-g" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
@@ -107,8 +108,8 @@
                       <label class="labelStyle" for="email">Email</label>
                     </div>
                     <div class="ui-md-8 no-padding">
-                      <input type="text" class="form-control inputStyle full-width " name="email" [(ngModel)]="user.email" #email="ngModel" required />
-                      <div *ngIf="f.submitted && !email.valid" class="help-block">Email is required</div>
+                      <input type="text" class="form-control inputStyle full-width " name="email" [(ngModel)]="user.email" #email="ngModel"   />
+                      <div *ngIf="f.submitted && !email.valid" class="help-block">Email is  </div>
                     </div>
                   </div>
                   <div class="form-group padding ui-g" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
@@ -116,8 +117,8 @@
                       <label class="labelStyle" for="username">Username</label>
                     </div>
                     <div class="ui-md-8 no-padding">
-                      <input type="text" class="form-control inputStyle full-width" name="username" [(ngModel)]="user.username" #username="ngModel" required />
-                      <div *ngIf="f.submitted && !username.valid" class="help-block">Username is required</div>
+                      <input type="text" class="form-control inputStyle full-width" name="username" [(ngModel)]="user.username" #username="ngModel"   />
+                      <div *ngIf="f.submitted && !username.valid" class="help-block">Username is  </div>
                     </div>
                   </div>
                   <div class="form-group padding ui-g " [ngClass]="{ 'has-error': f.submitted && !password.valid }">
@@ -125,9 +126,9 @@
                         <label class="labelStyle" for="password">Password</label>
                       </div>
                       <div class="ui-md-8 no-padding">
-                        <input type="password" class="form-control inputStyle full-width" name="password" [(ngModel)]="user.password" #password="ngModel" required />
+                        <input type="password" class="form-control inputStyle full-width" name="password" [(ngModel)]="user.password" #password="ngModel"   />
 
-                        <div *ngIf="f.submitted && !password.valid" class="help-block">Password is required</div>
+                        <div *ngIf="f.submitted && !password.valid" class="help-block">Password is  </div>
                       </div>
                     </div>
                   <div class="form-group padding ui-g">
@@ -163,12 +164,22 @@
 
 
                       <div class="ui-md-8 no-padding calendarBtn">
-                          <p-calendar  [(ngModel)]="user.userInfo.birthDate" name="birthDate" #birthDate="ngModel" [showIcon]="true" ></p-calendar>
+                          <p-calendar  [(ngModel)]="date" dateFormat="dd.mm.yy" name="birthDate" #birthDate="ngModel" [showIcon]="true" ></p-calendar>
                                        </div>
                     </div>
 
+                    <div class="form-group padding ui-g">
+                        <div class="ui-md-3 no-padding">
+                          <label class="labelStyle" for="gender">Gender</label>
+                        </div>
+                        <div class="ui-md-8 no-padding">
+                          <input type="text" class="form-control inputStyle full-width " name="gender" [(ngModel)]="user.userInfo.gender" #gender="ngModel"
+                          />
+                        </div>
+                      </div>
+
                   <div class="form-group padding ">
-                    <button [disabled]="loading" type="button" class="w3-button w3-theme">
+                    <button [disabled]="loading" type="submit" class="w3-button w3-theme">
                       <i class="fa fa-pencil"></i> &nbsp;Update Information
                     </button>
                   </div>

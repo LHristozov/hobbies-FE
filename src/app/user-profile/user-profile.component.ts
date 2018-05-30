@@ -23,7 +23,7 @@ export class UserProfileComponent implements OnInit {
   hasImage: any = false;
   msgs: Message[];
   uploadedFiles: any[] = [];
-  birthDate: any;
+  date: any;
 
   selectedFiles: FileList;
   currentFileUpload: File;
@@ -44,7 +44,11 @@ export class UserProfileComponent implements OnInit {
 
     this.userProfileService.getUserByUsername(username).then(res => {
       console.log(`Result ${res}`);
+      debugger;
       this.user = res;
+      this.date = new Date(this.user.userInfo.birthDate);
+
+
 
       // this.userInfo = res['userInfo'];
       // this.user.firstname = res['firstname'];
@@ -66,7 +70,6 @@ export class UserProfileComponent implements OnInit {
 
 update() {
   this.loading = true;
-
   this.userService.update(this.user).then(res => {
               this.alertService.success('update successful', true);
            //   this.location.back();
