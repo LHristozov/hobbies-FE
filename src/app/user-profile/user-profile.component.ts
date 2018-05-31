@@ -70,6 +70,7 @@ export class UserProfileComponent implements OnInit {
 
 update() {
   this.loading = true;
+  this.user.userInfo.birthDate = this.date;
   this.userService.update(this.user).then(res => {
               this.alertService.success('update successful', true);
            //   this.location.back();

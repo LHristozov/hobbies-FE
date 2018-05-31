@@ -9,11 +9,12 @@ import { User } from '../user/user';
 import { CustomComment } from '../custom-comment';
 import { Event } from '../event';
 import { UserProfileService } from '../user-profile/user-profile.service';
+import { EventsService } from '../events/events.service';
 
 @Component({
   selector: 'app-user-info',
   templateUrl: './user-info.component.html',
-  providers: [UserInfoService, UserProfileService],
+  providers: [UserInfoService, UserProfileService, EventsService],
   styleUrls: ['./user-info.component.css']
 })
 export class UserInfoComponent implements OnInit, OnDestroy {
@@ -23,6 +24,7 @@ export class UserInfoComponent implements OnInit, OnDestroy {
   hasImage: any = false;
   usersName: String = '';
   isOwnProfile: Boolean = false;
+  userEvents: any = [];
 
 
   private _routeSubscription: Subscription = new Subscription();
@@ -30,6 +32,7 @@ export class UserInfoComponent implements OnInit, OnDestroy {
   constructor(
     private eventInfoService: UserInfoService,
     private userProfileService: UserProfileService,
+    private eventsService: EventsService,
     private route: ActivatedRoute
   ) {}
 
@@ -52,12 +55,28 @@ export class UserInfoComponent implements OnInit, OnDestroy {
       if (this.user.image != null) {
         this.hasImage = true;
       }
+      // debugger;
 
       if ((this.user.firstname).length > 0 && (this.user.lastname).length > 0 ) {
         this.usersName = this.user.firstname + ' ' + this.user.lastname;
       } else {
         this.usersName = this.user.username;
       }
+
+
+      this.eventsService.getUserEvents(this.name).subscribe(
+        (ress: any) => {
+          for (const event of ress){
+            event.destination.netImage = '../assets/upload-dir/' + event.destination.name + '/' + '1.jpg';
+          }
+
+          this.userEvents = ress;
+        },
+        err => {
+          console.error(err);
+        }
+      );
+
       // this.user.firstname = res['firstname'];
       // this.user.lastname = res['lastname'];
       // this.user.username = res['username'];
