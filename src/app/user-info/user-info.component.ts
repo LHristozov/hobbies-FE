@@ -25,6 +25,9 @@ export class UserInfoComponent implements OnInit, OnDestroy {
   usersName: String = '';
   isOwnProfile: Boolean = false;
   userEvents: any = [];
+  nextEvent: any = [];
+  isVisible: Boolean = false;
+  interests: any = [];
 
 
   private _routeSubscription: Subscription = new Subscription();
@@ -48,21 +51,39 @@ export class UserInfoComponent implements OnInit, OnDestroy {
       this.isOwnProfile = true;
     }
 
-    this.userProfileService.getUserByUsername(username).then(res => {
+   
+
+    this.userProfileService.getUserByUsername(this.name).then(res => {
       console.log(`Result ${res}`);
       console.log(res['firstname']);
       this.user = res;
       if (this.user.image != null) {
         this.hasImage = true;
-      }
-      // debugger;
-
+      } 
+      
       if ((this.user.firstname).length > 0 && (this.user.lastname).length > 0 ) {
         this.usersName = this.user.firstname + ' ' + this.user.lastname;
       } else {
         this.usersName = this.user.username;
       }
 
+      if (this.isOwnProfile === true || (this.user.userInfo.status).length > 0){
+        this.isVisible = true;
+      }
+
+      this.interests = this.user.userInfo.interests.split(',')
+
+
+      this.eventsService.getNextEventByUser(this.name).subscribe(
+        (resss: any) => {
+           resss.destination.netImage = '../assets/upload-dir/' + resss.destination.name + '/' + '1.jpg';
+
+          this.nextEvent = resss;
+        },
+        err => {
+          console.error(err);
+        }
+      );
 
       this.eventsService.getUserEvents(this.name).subscribe(
         (ress: any) => {

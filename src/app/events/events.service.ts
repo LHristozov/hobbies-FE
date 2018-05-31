@@ -17,4 +17,9 @@ export class EventsService {
       return this.httpClient.get(`${SERVER_DOMAIN}/events/getEventsByUser/${name}`);
     }
 
+    getNextEventByUser(name: String): Observable<any> {
+        return this.httpClient.get(`${SERVER_DOMAIN}/events/getNextEventByUser/${name}`);
+      }
+    
+
 }
