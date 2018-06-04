@@ -22,8 +22,8 @@ export class NewEventComponent implements OnInit {
   destinations: Destination[] =  [];
   meetingPoint: MeetingPoint = new MeetingPoint();
 
-  lat = 51.678418;
-  lng = 7.809007;
+  lat = 42.14360940298495;
+  lng = 24.74711301840921;
   zoom = 8;
   markers: Marker[] = [ ];
   loading = false;

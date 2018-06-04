@@ -10,6 +10,7 @@ import { ButtonModule } from 'primeng/button';
 import { AutoCompleteModule } from 'primeng/autocomplete';
 import { FileUploadModule } from 'primeng/fileupload';
 import { CalendarModule } from 'primeng/calendar';
+import { InputTextareaModule } from 'primeng/inputtextarea';
 
 import { AppComponent } from './app.component';
 import { EventsComponent } from './events/events.component';
@@ -44,6 +45,7 @@ import { GlobalChatComponent } from './global-chat/global-chat.component';
 import { MessagesComponent } from './messages/messages.component';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -76,6 +78,7 @@ import { MessagesComponent } from './messages/messages.component';
     AutoCompleteModule,
     FileUploadModule,
     CalendarModule,
+    InputTextareaModule,
     HttpClientModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyD_7n6H1oClDLm-rYpFsH7PIN0NJgDIwrM'
