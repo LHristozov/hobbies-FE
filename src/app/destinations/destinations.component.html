@@ -1,27 +1,49 @@
 <h1>Destinations</h1>
 <div>
-    <a class="ui button" routerLink="/home/new-destination" routerLinkActive="active">Create new destination</a>
-  </div>
+  <a class="ui button" routerLink="/home/new-destination" routerLinkActive="active">Create new destination</a>
+</div>
 
 
 <div class="ui grid">
-  <div  class="four wide column" *ngFor="let destination of destinations">
+  <div class="four wide column" *ngFor="let destination of pagedItems">
 
 
 
-      <div class="ui card"  style="margin: 2em;" [routerLink]="['/home/destinations', destination.name]" routerLinkActive="active">
-          <a class="image">
-            <img [src]="destination.netImage">
-          </a>
-          <div class="content">
-            <a class="header" >{{destination.name}}</a>
-            <div class="meta">
-              <a>{{destination.description}}</a>
-            </div>
-          </div>
+    <div class="ui card" style="margin: 2em;" [routerLink]="['/home/destinations', destination.name]" routerLinkActive="active">
+      <a class="image">
+        <img class="img-style" [src]="destination.netImage">
+      </a>
+      <div class="content">
+        <a class="header">{{destination.name}}</a>
+        <div class="meta">
+          <a>{{destination.description.substring(0, 120) + '...'}}</a>
         </div>
+      </div>
+    </div>
 
 
   </div>
 
+
+</div>
+
+<div class="center">
+  <!-- pager -->
+  <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
+    <li [ngClass]="{disabled:pager.currentPage === 1}">
+      <a (click)="setPage(1)">First</a>
+    </li>
+    <li [ngClass]="{disabled:pager.currentPage === 1}">
+      <a (click)="setPage(pager.currentPage - 1)">Previous</a>
+    </li>
+    <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
+      <a (click)="setPage(page)">{{page}}</a>
+    </li>
+    <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+      <a (click)="setPage(pager.currentPage + 1)">Next</a>
+    </li>
+    <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+      <a (click)="setPage(pager.totalPages)">Last</a>
+    </li>
+  </ul>
 </div>
