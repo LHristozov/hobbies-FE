@@ -1,13 +1,27 @@
 <h1>Destinations</h1>
-<div *ngFor="let destination of destinations">
-  <div [routerLink]="['/home/destinations', destination.name]" routerLinkActive="active">
-    <a>{{destination.name | json}}</a>
-    <!-- <a>{{destination.netImage | json}}</a> -->
-    <img [src]="destination.netImage" height="42" width="42" class="figure-img img-fluid rounded" alt="a figure.">
+<div>
+    <a class="ui button" routerLink="/home/new-destination" routerLinkActive="active">Create new destination</a>
+  </div>
+
+
+<div class="ui grid">
+  <div  class="four wide column" *ngFor="let destination of destinations">
+
+
+
+      <div class="ui card"  style="margin: 2em;" [routerLink]="['/home/destinations', destination.name]" routerLinkActive="active">
+          <a class="image">
+            <img [src]="destination.netImage">
+          </a>
+          <div class="content">
+            <a class="header" >{{destination.name}}</a>
+            <div class="meta">
+              <a>{{destination.description}}</a>
+            </div>
+          </div>
+        </div>
+
 
   </div>
-  <!-- {{destination | json}} -->
-</div>
-<div>
-  <a class="ui button" routerLink="/home/new-destination" routerLinkActive="active">Create new destination</a>
+
 </div>
