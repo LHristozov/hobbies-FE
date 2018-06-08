@@ -4,52 +4,75 @@
 } */
 
 a {
-    cursor: pointer;
+  cursor: pointer;
 }
-:host{
-    height: 100%;
-    width: 98%;
+:host {
+  height: 100%;
+  width: 98%;
 }
 
 .pagination {
-    display: inline-block;
-    padding-left: 0;
-    margin: 20px 0;
-    border-radius: 4px;
+  display: inline-block;
+  padding-left: 0;
+  margin: 20px 0;
+  border-radius: 4px;
 }
 
-.pagination>li {
-    display: inline;
+.pagination > li {
+  display: inline;
 }
 
-.pagination>li:first-child>a, .pagination>li:first-child>span {
-    margin-left: 0;
-    border-top-left-radius: 4px;
-    border-bottom-left-radius: 4px;
+.pagination > li:first-child > a,
+.pagination > li:first-child > span {
+  margin-left: 0;
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
 }
 
-.pagination>li>a, .pagination>li>span {
-    position: relative;
-    float: left;
-    padding: 6px 12px;
-    margin-left: -1px;
-    line-height: 1.42857143;
-    color: #337ab7;
-    text-decoration: none;
-    background-color: #fff;
-    border: 1px solid #ddd;
+.pagination > li > a,
+.pagination > li > span {
+  position: relative;
+  float: left;
+  padding: 6px 12px;
+  margin-left: -1px;
+  line-height: 1.42857143;
+  color: #337ab7;
+  text-decoration: none;
+  background-color: #fff;
+  border: 1px solid #ddd;
 }
 
-.pagination>.disabled>a, .pagination>.disabled>a:focus, .pagination>.disabled>a:hover, .pagination>.disabled>span, .pagination>.disabled>span:focus, .pagination>.disabled>span:hover {
-    color: #777;
-    cursor: not-allowed;
-    background-color: #fff;
-    border-color: #ddd;
+.pagination > .disabled > a,
+.pagination > .disabled > a:focus,
+.pagination > .disabled > a:hover,
+.pagination > .disabled > span,
+.pagination > .disabled > span:focus,
+.pagination > .disabled > span:hover {
+  color: #777;
+  cursor: not-allowed;
+  background-color: #fff;
+  border-color: #ddd;
 }
-
 
 .center {
-    margin: auto;
-    width: 24%;
-    padding: 10px;
+  margin: auto;
+  width: 24%;
+  padding: 10px;
+}
+
+.mybutton {
+  height: 50px;
+  padding: 13px !important;
+  width: 50px;
+  z-index: 15;
+  text-align: center;
+  font-size: 44px;
+  line-height: 22px;
+  position: fixed;
+  bottom: 50px;
+  right: 50px;
+  background-color: rgb(18, 134, 86);
+  color: white;
+  border-radius: 50px;
+  border-color: #08806c;
 }

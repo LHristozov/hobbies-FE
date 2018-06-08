@@ -20,8 +20,8 @@ const appRoutes: Routes = [
       children: [
           { path: 'events', component: EventsComponent, canActivate: [AuthGuard] },
           { path: 'destinations', component: DestinationsComponent, canActivate: [AuthGuard] },
-          { path: 'new-destination', component: NewDestinationComponent, canActivate: [AuthGuard] },
-          { path: 'new-event', component: NewEventComponent, canActivate: [AuthGuard] },
+          { path: 'destinations/new-destination', component: NewDestinationComponent, canActivate: [AuthGuard] },
+          { path: 'events/new-event', component: NewEventComponent, canActivate: [AuthGuard] },
           { path: 'user-profile', component: UserProfileComponent, canActivate: [AuthGuard] },
           { path: 'global-chat', component: GlobalChatComponent, canActivate: [AuthGuard] },
           { path: 'destinations/:name', component: DestinationInfoComponent, canActivate: [AuthGuard] },

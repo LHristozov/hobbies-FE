@@ -1,14 +1,10 @@
-<h1>Destinations</h1>
 <div>
-  <a class="ui button" routerLink="/home/new-destination" routerLinkActive="active">Create new destination</a>
+  <a class="ui button mybutton" routerLink="/home/destinations/new-destination" routerLinkActive="active">+</a>
 </div>
 
 
 <div class="ui grid">
   <div class="four wide column" *ngFor="let destination of pagedItems">
-
-
-
     <div class="ui card" style="margin: 2em;" [routerLink]="['/home/destinations', destination.name]" routerLinkActive="active">
       <a class="image">
         <img class="img-style" [src]="destination.netImage">
@@ -20,11 +16,7 @@
         </div>
       </div>
     </div>
-
-
   </div>
-
-
 </div>
 
 <div class="center">
