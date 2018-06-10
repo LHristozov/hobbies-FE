@@ -24,6 +24,10 @@ export class EventInfoComponent implements OnInit, OnDestroy {
   participants: String [] = [];
   owner: User = new User();
   model: CustomComment = new CustomComment();
+  lat: Number = 0;
+  lng: Number = 0;
+  zoom = 16;
+  currentImg: any = "";
 
   private _routeSubscription: Subscription = new Subscription();
 
@@ -43,12 +47,16 @@ export class EventInfoComponent implements OnInit, OnDestroy {
     this.eventInfoService.getEventInfo(this.name).subscribe(
       (res: any) => {
         this.event = res;
-        this.destination = res.destination;
+        debugger;
+        this.lat = Number(res.meetingPoint.lat);
+        this.lng = Number(res.meetingPoint.lon);
 
         // Event img is the first img from the destination
-        this.eventInfoService.getEventImgs(this.destination.name).subscribe(
+        this.eventInfoService.getEventImgs(res.destination.name).subscribe(
           (resu: any) => {
-            this.imgs.push('../assets/upload-dir/' + this.destination.name + '/' + resu[0]);
+            debugger;
+            this.imgs.push('../assets/upload-dir/' + res.destination.name + '/' + resu[0]);
+            this.currentImg = this.imgs[0];
           },
           err => {
             console.error(err);
@@ -77,6 +85,7 @@ export class EventInfoComponent implements OnInit, OnDestroy {
         for (const comment of res) {
           this.comments.push(comment);
         }
+        this.comments = this.comments.reverse();
       },
       err => {
         console.error(err);
@@ -112,7 +121,7 @@ export class EventInfoComponent implements OnInit, OnDestroy {
 
         this.eventInfoService.getEventComments(this.name).subscribe(
           (ress: any) => {
-            this.comments = ress;
+            this.comments = ress.reverse();
           },
           err => {
             console.error(err);
@@ -124,4 +133,19 @@ export class EventInfoComponent implements OnInit, OnDestroy {
       }
     );
   }
+
+
+
+  myFunction(id) {
+    var x = document.getElementById(id);
+    if (x.className.indexOf("w3-show") == -1) {
+        x.className += " w3-show";
+        x.previousElementSibling.className += " w3-theme-d1";
+    } else { 
+        x.className = x.className.replace("w3-show", "");
+        x.previousElementSibling.className = 
+        x.previousElementSibling.className.replace(" w3-theme-d1", "");
+    }
+}
+
 }
