@@ -1,87 +1,110 @@
 <!-- <a>Destination INfo page</a> -->
-<a>{{name}}</a>
+<!-- <a>{{name}}</a> -->
 <!-- <a>{{sub | json}}</a> -->
-<a>{{imgs | json}}</a>
+<!-- <a>{{imgs | json}}</a> -->
+{{markers | json}}
 
 <div class="w3-container w3-content" style="max-width:1400px;margin-top:80px">
   <!-- The Grid -->
   <div class="w3-row">
 
-      <!-- Left Column -->
-      <div class="w3-col m6">
-        <!-- Profile -->
-        <div class="w3-card w3-round w3-white">
-          <div class="w3-container padding">
-            <h2>Event Information</h2>
-            <div class="container height">
-
-              <div class="form-group">
-                <label class="labelStyle" for="name">Destination Title:</label>
-
-                <a>{{sub.name}}</a>
-
-                <!-- <input type="text" class="form-control inputStyle full-width" id="name" required [(ngModel)]="sub.name" name="name" #name="ngModel">
-                <div [hidden]="name.valid || name.pristine" class="ui message alert alert-danger">
-                  Field is required
-                </div> -->
-              </div>
-              <div class="form-group">
-                <label class="labelStyle" for="description">Event Description: </label>
-                <textarea   id="description" required [(ngModel)]="sub.description" name="description"
-                #description="ngModel" class="form-control inputStyle full-width" rows="2" cols="30" pInputTextarea ></textarea>
-                <!-- <input type="text" class="form-control inputStyle full-width" id="description" required [(ngModel)]="model.description" name="description"
-                  #description="ngModel"> -->
-                <div [hidden]="description.valid || description.pristine" class="ui message alert alert-danger">
-                  Field is required
-                </div>
-              </div>
-
+    <!-- Left Column -->
+    <div class="w3-col m5">
+      <!-- Profile -->
+      <div class="w3-card w3-round w3-white">
+        <div class="w3-container padding">
+          <h2 style="text-align: center;padding-bottom: 10px;">{{sub.name}}</h2>
+          <div class="container height">
+            <div class="map-padding ">
+              <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom" (mapReady)="mapReady($event)">
+                <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+              </agm-map>
             </div>
+            <div class="form-group paddig-top-bottom">
+              <a>{{sub.description}}</a>
+            </div>
+
           </div>
         </div>
-        <!-- End Left Column -->
       </div>
-      <!-- Middle Column -->
-      <div class="w3-col m5">
-       <div class="w3-row-padding">
-          <div class="w3-col m12">
-            <div class="w3-card w3-round w3-white">
-              <div class="w3-container w3-padding">
-                <div class="col-md-7">
+      <!-- End Left Column -->
+    </div>
+    <!-- Middle Column -->
+    <div class="w3-col m7">
+      <div class="w3-row-padding">
+        <div class="w3-col m12">
+          <div class="w3-card w3-round w3-white">
+            <div class="w3-container w3-padding">
+              <div class="col-md-7 padding" style="padding-left: 44px;">
+                <div class="w3-container" id="destination">
 
 
-                  <!-- <h2>Select Meeting Point Coordinations:</h2> -->
-                  <!-- this creates a google map on the page with the given lat/lng from -->
-                  <!-- the component as the initial center of the map: -->
-                  <!-- <div class="map-padding">
-                  <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom" [disableDefaultUI]="false" [zoomControl]="false" (mapClick)="mapClicked($event)">
+                  <div class="w3-display-container mySlides">
+                    <img [src]=[currentImg] style="display: block;max-width: 600px;max-height: 400px;width: auto;height: auto;">
 
-                    <agm-marker *ngFor="let m of markers; let i = index" (markerClick)="clickedMarker(m.label, i)" [latitude]="m.lat" [longitude]="m.lng"
-                      [label]="m.label" [markerDraggable]="m.draggable" (dragEnd)="markerDragEnd(m, $event)">
-                      <agm-info-window>
-                        <strong>{{lat}} and {{lng}}</strong>
-                      </agm-info-window>
-                    </agm-marker>
-                  </agm-map>
-                  <div style="padding-top:12px;">
-                    <label for="lat">Latitude: {{lat}}</label>
                   </div>
-                  <div style="padding-top:8px;">
-                    <label for="lng">Longitude: {{lng}}</label>
+
+                </div>
+
+                <div class="w3-row-padding w3-section ">
+                  <div class="w3-col s3 width" *ngFor="let img of pagedItems">
+                    <img class="demo w3-opacity w3-hover-opacity-off imgStyle" [src]="img" (click)="currentImgChange(img)" title="click to change to this photo">
                   </div>
-                  </div> -->
+                  <div class="" style="float: right;">
+                    <p-fileUpload #fubauto styleClass="mybutton" mode="basic" auto="true" name="demo[]" accept="image/*" maxFileSize="1000000"
+                      customUpload="true" (uploadHandler)="upload($event)"></p-fileUpload>
+                    <!-- <a class="ui button mybutton" routerLink="/home/destinations/new-destination" routerLinkActive="active">+</a> -->
+                  </div>
+                </div>
 
-                  <!--
-                <form name="form" style="font-size: 18px;" (ngSubmit)="f.form.valid && update()" #f="ngForm" novalidate>
-                </form> -->
+                <div class="center">
+                  <!-- pager -->
+                  <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
+
+                    <li [ngClass]="{disabled:pager.currentPage === 1}">
+                      <a (click)="setPage(pager.currentPage - 1)">Previous</a>
+                    </li>
+                    <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
+                      <a (click)="setPage(page)">{{page}}</a>
+                    </li>
+                    <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                      <a (click)="setPage(pager.currentPage + 1)">Next</a>
+                    </li>
+
+                  </ul>
+                </div>
 
 
-                <!-- </div> -->
-                <!--
-              <button type="button" class="w3-button w3-theme">
-                <i class="fa fa-pencil"></i> &nbsp;Post</button> -->
 
 
+                <div>
+
+           
+                  <div class="send-button send-container">
+                    <!-- <div class="send" (click)="saveDestinationComment(input.value)"></div> -->
+                    <input class="input-field" id="input" placeholder="Write Comment" type="text" #input>
+                    <div >
+                        <button [disabled]="loading"  class="w3-button w3-theme" (click)="saveDestinationComment(input.value)">
+                          <i class="fa fa-pencil"></i> &nbsp;Comment
+                        </button>
+                      </div>
+                  </div>
+
+                  <div class="comment-container">
+                      <div class="comment-div" *ngFor="let comment of comments">
+                          <a >{{comment}}</a>
+                        </div>
+
+                    </div>
+
+                  <!-- <p-scrollPanel [style]="{width: '100%', height: '200px'}" styleClass="destination-comments">
+                    <div style="padding:1em;line-height:1.5;">
+                      <div *ngFor="let comment of comments">
+                        <a >{{comment}}</a>
+                      </div>
+                    </div>
+                  </p-scrollPanel> -->
+                </div>
 
 
 
@@ -92,35 +115,8 @@
         </div>
         <!-- End Middle Column -->
 
-    </div>
-    <!-- End Grid -->
-  </div>
-  <!-- End Page Container -->
-</div>
-
-
-
-
-
-
-
-<div *ngFor="let img of imgs">
-  <img [src]="img" height="42" width="42" class="figure-img img-fluid rounded" alt="a figure.">
-
-</div>
-
-<div class="ui-g-12 ui-md-4">
-  <p-scrollPanel [style]="{width: '100%', height: '200px'}" styleClass="destination-comments">
-    <div style="padding:1em;line-height:1.5;">
-      <div *ngFor="let comment of comments">
-        <a>{{comment}}</a>
       </div>
+      <!-- End Grid -->
     </div>
-  </p-scrollPanel>
-</div>
-
-<div class="send-button">
-  <div class="send" (click)="saveDestinationComment(input.value)">
+    <!-- End Page Container -->
   </div>
-  <input id="input" type="text" #input>
-</div>

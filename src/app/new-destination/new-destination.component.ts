@@ -3,6 +3,8 @@ import { NewDestinationService } from './new-destination.service';
 import { Destination } from '../destination';
 import { Location } from '@angular/common';
 import { MouseEvent } from '@agm/core';
+import { Message } from 'primeng/primeng';
+
 
 @Component({
   selector: 'app-new-destination',
@@ -14,16 +16,19 @@ export class NewDestinationComponent {
   events: any;
   model: Destination = new Destination();
   title = 'Select Destination Location';
-  lat = 51.678418;
-  lng = 7.809007;
+  lat = 42.140774947466454;
+  lng = 24.74435693729356;
   zoom = 8;
   markers: Marker[] = [ ];
   loading = false;
   netImage: any = '';
+  show: any = false;
+  msgs: Message[];
 
   selectedFiles: FileList;
   currentFileUpload: File;
   progress: { percentage: number } = { percentage: 0 };
+  uploadedFiles: any[] = [];
 
   constructor(private newDestinationService: NewDestinationService, private location: Location) { }
 
@@ -65,20 +70,46 @@ export class NewDestinationComponent {
 
 
 
-upload() {
-  this.progress.percentage = 0;
+  upload(event) {
+    this.progress.percentage = 0;
+    for (const file of event.files) {
+      this.uploadedFiles.push(file);
 
-  this.currentFileUpload = this.selectedFiles.item(0);
-  this.newDestinationService.pushFileToStorage(this.currentFileUpload, this.model.name)
-  .then(res => {
-    this.netImage = '../assets/upload-dir/' + this.model.name + '/' + '_1';
-    console.log(res);
-    }).catch(err => {
-    console.error(err);
-  });
+      // this.userProfileService.pushFileToStorage(file, this.user.id)
+      this.newDestinationService.pushFileToStorage(file, this.model.name)
+        .then(res => {
+          debugger;
+          
+  
+          this.msgs = [];
+          this.msgs.push({severity: 'info', summary: 'Success', detail: 'File Uploaded'});
 
-  this.selectedFiles = undefined;
-}
+          this.netImage = '../assets/upload-dir/' + this.model.name + '/' + '_1';
+          this.show = true;
+          console.log(res);
+        }).catch(err => {
+          console.error(err);
+        });
+
+
+    }
+  }
+
+
+// upload() {
+//   this.progress.percentage = 0;
+
+//   this.currentFileUpload = this.selectedFiles.item(0);
+//   this.newDestinationService.pushFileToStorage(this.currentFileUpload, this.model.name)
+//   .then(res => {
+//     this.netImage = '../assets/upload-dir/' + this.model.name + '/' + '_1';
+//     console.log(res);
+//     }).catch(err => {
+//     console.error(err);
+//   });
+
+//   this.selectedFiles = undefined;
+// }
 
 selectFile(event) {
   const file = event.target.files.item(0);

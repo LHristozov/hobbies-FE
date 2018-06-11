@@ -7,6 +7,7 @@ import { FormsModule } from '@angular/forms';
 import { AgmCoreModule } from '@agm/core';
 import { ScrollPanelModule } from 'primeng/scrollpanel';
 import { ButtonModule } from 'primeng/button';
+import { GrowlModule } from 'primeng/growl';
 import { AutoCompleteModule } from 'primeng/autocomplete';
 import { FileUploadModule } from 'primeng/fileupload';
 import { CalendarModule } from 'primeng/calendar';
@@ -74,6 +75,7 @@ import { MessagesComponent } from './messages/messages.component';
     routing,
     ScrollPanelModule,
     ButtonModule,
+    GrowlModule,
     FormsModule,
     AutoCompleteModule,
     FileUploadModule,

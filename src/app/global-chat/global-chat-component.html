@@ -1,3 +1,38 @@
+<div style="text-align:center;width: 100%;height: 100%;">
+  <h1>
+    Welcome to {{title}}!
+  </h1>
+  <div class="" style="height: 100%;">
+    <div class="chat" style="overflow: auto;">
+      <div class="message"></div>
+    </div>
+    <div class="send-button send-container">
+      <input class="input-field" id="input" placeholder="Begin writing" type="text" #input>
+      <div>
+        <button [disabled]="loading" class="w3-button w3-theme" (click)="sendMessage(input.value)">
+          <i class="fa fa-pencil"></i> &nbsp;Send
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+{{user | json}}
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 
 <div style="text-align:center">
   <h1>
     Welcome to {{title}}!
@@ -17,4 +52,4 @@
     <input  id="input" type="text" #input>
   </div>
 
-</div>
+</div> -->
