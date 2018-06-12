@@ -27,10 +27,11 @@ export class HomeComponent implements OnInit {
     constructor(private userService: UserService,
                 private eventsService: EventsService,
                 private router: Router) {
-        this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+
     }
 
     ngOnInit() {
+      this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
         this.loadAllUsers();
     }
 

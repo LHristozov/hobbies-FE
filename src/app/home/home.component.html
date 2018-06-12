@@ -1,7 +1,7 @@
 <div class="header">
   <div class="header-navigation">
-    <a routerLink="/home" [routerLinkActiveOptions]="{exact:
-        true}" routerLinkActive="active">
+    <a [routerLink]="['/home', 'user-info', currentUser.username]" [routerLinkActiveOptions]="{exact:
+        true}" class="user-style" routerLinkActive="active">
       <i class="home icon"></i> HOME</a>
     <a routerLink="/home/events" routerLinkActive="active">
       <i class="bullhorn icon"></i>Event</a>
