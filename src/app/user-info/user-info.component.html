@@ -1,6 +1,6 @@
- {{user | json}}
+ <!-- {{user | json}}
 
- {{isVisible}}
+ {{isVisible}} -->
 <!-- 
 <img [src]="netImage" class="figure-img img-fluid rounded" alt="A generic square placeholder image with rounded corners in a figure."> -->
 
@@ -15,7 +15,7 @@
         <div class="w3-container padding" >
           <div *ngIf="hasImage;  else templateName">
             <p class="w3-center">
-              <img src="../assets/upload-dir/1/Koala.jpg" class=" profilePicBig w3-circle" style="height:106px;width:106px" alt="Avatar">
+              <img [src]="[netImage]" class=" profilePicBig w3-circle" style="height:106px;width:106px" alt="Avatar">
             </p>
           </div>
           <ng-template #templateName>
@@ -66,8 +66,8 @@
         <div class="w3-col m12">
           <div class="w3-card w3-round w3-white">
             <div class="w3-container w3-padding" *ngIf="isVisible;">
-              <h6 class="w3-opacity">Social Media template by w3.css</h6>
-              <p contenteditable="true" class="w3-border w3-padding">Status: Feeling Blue</p>
+              <!-- <h6 class="w3-opacity">Social Media template by w3.css</h6> -->
+              <p contenteditable="true" class="w3-border w3-padding" >Status: Feeling Blue</p>
               <button *ngIf="isOwnProfile;" type="button" class="w3-button w3-theme">
                 <i class="fa fa-pencil"></i> &nbsp;Post</button>
             </div>

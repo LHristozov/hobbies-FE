@@ -48,7 +48,7 @@ export class UserProfileComponent implements OnInit {
       this.user = res;
       this.date = new Date(this.user.userInfo.birthDate);
 
-
+debugger;
 
       // this.userInfo = res['userInfo'];
       // this.user.firstname = res['firstname'];

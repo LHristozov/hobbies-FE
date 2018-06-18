@@ -104,6 +104,7 @@ export class UserInfoComponent implements OnInit, OnDestroy {
       // this.user.email = res['email'];
       // this.user.id = res['id'];
       this.user.image = res['image'];
+      debugger;
       this.netImage = '../assets/upload-dir/' + this.user.id + '/' + this.user.image;
       console.log(this.user);
       }).catch(err => {

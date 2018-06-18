@@ -54,7 +54,7 @@
                   <div style="display: flex;">
                     <div style="width: 70%;height: 100%;border-style: ridge;">
                       <button onclick="myFunction('Demo1')" class="w3-button w3-block w3-theme-l1 w3-left-align">
-                        <i class="fa fa-circle-o-notch fa-fw w3-margin-right"></i> Participants</button>
+                        <i class="fa fa-circle-o-notch fa-fw w3-margin-right"></i> Participants ({{participants.length}})</button>
                       <div id="Demo1" class="w3-hide w3-container participants-padding-container">
                         <a [routerLink]="['/home/user-info', user]" class="user-style" routerLinkActive="active" *ngFor="let user of participants">{{user}}</a>
                       </div>
