@@ -32,33 +32,7 @@ export class LoginComponent implements OnInit {
         // get return url from route parameters or default to '/'
         this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
 
-      //   $('.ui.form').form({
-      //     fields: {
-      //       username: {
-      //         identifier  : 'username',
-      //         rules: [
-      //           {
-      //             type   : 'empty',
-      //             prompt : 'Please enter your username'
-      //           }
-      //         ]
-      //       },
-      //       password: {
-      //         identifier  : 'password',
-      //         rules: [
-      //           {
-      //             type   : 'empty',
-      //             prompt : 'Please enter your password'
-      //           },
-      //           {
-      //             type   : 'length[6]',
-      //             prompt : 'Your password must be at least 6 characters'
-      //           }
-      //         ]
-      //       }
-      //     }
-      //   })
-      // ;
+  
     }
 
     login() {
