@@ -1,7 +1,7 @@
  <!-- {{user | json}}
 
  {{isVisible}} -->
-<!-- 
+<!--
 <img [src]="netImage" class="figure-img img-fluid rounded" alt="A generic square placeholder image with rounded corners in a figure."> -->
 
 
@@ -68,16 +68,16 @@
             <div class="w3-container w3-padding" *ngIf="isVisible;">
               <!-- <h6 class="w3-opacity">Social Media template by w3.css</h6> -->
               <p contenteditable="true" class="w3-border w3-padding" >Status: Feeling Blue</p>
-              <button *ngIf="isOwnProfile;" type="button" class="w3-button w3-theme">
+              <input type="text" class="w3-border w3-padding" placeholder="What's on your mind?" [(ngModel)]="user.userInfo.status" name="user.userInfo.status">
+              <button *ngIf="isOwnProfile;" type="button" (click)="updateStatus()" class="w3-button w3-theme">
                 <i class="fa fa-pencil"></i> &nbsp;Post</button>
             </div>
-
 
             <div class="column">
               <div class="ui raised segment" >
                   <div class="w3-row-padding" style="margin:0 -16px">
                 <div *ngFor="let event of userEvents" style="margin: 1em auto; cursor: pointer;" [routerLink]="['/home/events', event.name]">
-                  
+
                     <div class="w3-half">
                       <div class="image">
                         <img [src]="event.destination.netImage"  height="120" width="55" style="width:50%">
@@ -120,7 +120,7 @@
       <div class="w3-card w3-round w3-white w3-center paddingUpDown">
         <div class="w3-container">
           <p>Upcoming Events:</p>
-          
+
           <div class="image">
               <img [src]="nextEvent.destination.netImage" style="width:50%">
             </div>
@@ -129,11 +129,11 @@
               <div class="meta">
                 <span class="date">Event date: {{nextEvent.eventDate | date}}</span>
               </div>
-              
+
             </div>
-            
+
             <button  style="margin-top: 20px;" class="w3-button w3-block w3-theme-l4" [routerLink]="['/home/events', nextEvent.name]" >More Info</button>
-          
+
         </div>
       </div>
       <br>

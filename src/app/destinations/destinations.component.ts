@@ -7,7 +7,7 @@ import { DestinationsService } from './destinations.service';
   templateUrl: './destinations.component.html',
   providers: [DestinationsService],
   styleUrls: ['./destinations.component.css']
-}) 
+})
 export class DestinationsComponent implements OnInit  {
   destinations: any;
   netImage: any = '';
@@ -51,12 +51,12 @@ getPager(totalItems: number, currentPage: number = 1, pageSize: number = 8) {
   let totalPages = Math.ceil(totalItems / pageSize);
 
   // ensure current page isn't out of range
-  if (currentPage < 1) { 
-      currentPage = 1; 
-  } else if (currentPage > totalPages) { 
-      currentPage = totalPages; 
+  if (currentPage < 1) {
+      currentPage = 1;
+  } else if (currentPage > totalPages) {
+      currentPage = totalPages;
   }
-  
+
   let startPage: number, endPage: number;
   if (totalPages <= 10) {
       // less than 10 total pages so show all

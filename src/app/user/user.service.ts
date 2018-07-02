@@ -30,6 +30,10 @@ export class UserService {
         return this.http.post(`${SERVER_DOMAIN}/update/` + user.id, user).toPromise();
     }
 
+    updateStatus(user: User) {
+      return this.http.post(`${SERVER_DOMAIN}/updateStatus/` + user.username, user).toPromise();
+    }
+
     delete(id: number) {
         return this.http.delete('/api/users/' + id);
     }

@@ -11,12 +11,47 @@
       <i class="comment alternate icon"></i>Chat</a>
     <a routerLink="/home/messages" routerLinkActive="active">
       <i class="address card icon"></i>Messages</a>
+
+      <div style="display: flex;">
+          <div class="header-search" style="display: flex;">
+            <div class="ui primary dropdown button" style="padding-right: 0px;padding-bottom: 0px;" suiDropdown>
+                <i class="search icon" style="font-size: 22px; color: gray;"></i>
+                <div class="menu" suiDropdownMenu>
+                    <a class="item" (click)="changeSearchCriteria('event')">Events</a>
+                    <a class="item" (click)="changeSearchCriteria('destination')">Destination</a>
+                    <a class="item" (click)="changeSearchCriteria('user')">Users</a>
+                </div>
+            </div>
+            <div *ngIf="searchCriteria=='event' ">
+                <p-autoComplete [(ngModel)]="event" [suggestions]="filteredEventsSingle" (onSelect)="goToSelectedEvent($event)" (completeMethod)="filterEventsSingle($event)"
+                field="name" [size]="50" placeholder="Search for Events" [minlength]="1" [forceSelection]="true">
+              </p-autoComplete>
+            </div>
+
+            <div *ngIf="searchCriteria=='destination' ">
+              <p-autoComplete [(ngModel)]="destination" [suggestions]="filteredDestinationsSingle" (onSelect)="goToSelectedDestination($event)" (completeMethod)="filterDestinationSingle($event)"
+                field="name" [size]="50" placeholder="Search for Destination" [minlength]="1" [forceSelection]="true">
+              </p-autoComplete>
+            </div>
+            <div *ngIf="searchCriteria=='user' ">
+              <p-autoComplete [(ngModel)]="user" [suggestions]="filteredUsersSingle" (onSelect)="goToSelectedUser($event)" (completeMethod)="filterUserSingle($event)"
+                field="username" [size]="50" placeholder="Search for User" [minlength]="1" [forceSelection]="true">
+              </p-autoComplete>
+            </div>
+          </div>
+      </div>
+<!--
     <div class="header-search">
       <i class="search icon"></i>
+      <div class="menu" suiDropdownMenu>
+          <a class="item">Events</a>
+          <a class="item">Destination</a>
+          <a class="item">Users</a>
+      </div>
       <p-autoComplete [(ngModel)]="event" [suggestions]="filteredEventsSingle" (onSelect)="goToSelected($event)" (completeMethod)="filterEventsSingle($event)"
         field="name" [size]="50" placeholder="Search for Events" [minlength]="1" [forceSelection]="true">
       </p-autoComplete>
-    </div>
+    </div> -->
   </div>
   <div style="display: flex;">
     <span class="username">{{currentUser?.username}}</span>
@@ -27,7 +62,6 @@
           <i class="user icon"></i>Edit Personal Information</a>
         <a [routerLink]="['/login']" class="item">
           <i class="sign out alternate icon"></i>Logout</a>
-
       </div>
     </div>
   </div>

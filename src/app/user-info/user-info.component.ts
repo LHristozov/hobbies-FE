@@ -10,11 +10,12 @@ import { CustomComment } from '../custom-comment';
 import { Event } from '../event';
 import { UserProfileService } from '../user-profile/user-profile.service';
 import { EventsService } from '../events/events.service';
+import { UserService } from '../user/user.service';
 
 @Component({
   selector: 'app-user-info',
   templateUrl: './user-info.component.html',
-  providers: [UserInfoService, UserProfileService, EventsService],
+  providers: [UserInfoService, UserProfileService, EventsService, UserService],
   styleUrls: ['./user-info.component.css']
 })
 export class UserInfoComponent implements OnInit, OnDestroy {
@@ -28,6 +29,7 @@ export class UserInfoComponent implements OnInit, OnDestroy {
   nextEvent: any = [];
   isVisible: Boolean = false;
   interests: any = [];
+  status: String = '';
 
 
   private _routeSubscription: Subscription = new Subscription();
@@ -36,7 +38,8 @@ export class UserInfoComponent implements OnInit, OnDestroy {
     private eventInfoService: UserInfoService,
     private userProfileService: UserProfileService,
     private eventsService: EventsService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private userService: UserService
   ) {}
 
   ngOnInit(): void {
@@ -51,7 +54,7 @@ export class UserInfoComponent implements OnInit, OnDestroy {
       this.isOwnProfile = true;
     }
 
-   
+
 
     this.userProfileService.getUserByUsername(this.name).then(res => {
       console.log(`Result ${res}`);
@@ -59,19 +62,19 @@ export class UserInfoComponent implements OnInit, OnDestroy {
       this.user = res;
       if (this.user.image != null) {
         this.hasImage = true;
-      } 
-      
+      }
+
       if ((this.user.firstname).length > 0 && (this.user.lastname).length > 0 ) {
         this.usersName = this.user.firstname + ' ' + this.user.lastname;
       } else {
         this.usersName = this.user.username;
       }
 
-      if (this.isOwnProfile === true || (this.user.userInfo.status).length > 0){
+      if (this.isOwnProfile === true || (this.user.userInfo.status).length > 0) {
         this.isVisible = true;
       }
 
-      this.interests = this.user.userInfo.interests.split(',')
+      this.interests = this.user.userInfo.interests.split(',');
 
 
       this.eventsService.getNextEventByUser(this.name).subscribe(
@@ -112,6 +115,15 @@ export class UserInfoComponent implements OnInit, OnDestroy {
     });
 
 
+  }
+
+  updateStatus() {
+    // this.user.userInfo.status = this.status;
+    this.userService.updateStatus(this.user).then(res => {
+             //   this.location.back();
+            }).catch(err => {
+              console.error(err);
+             });
   }
 
   ngOnDestroy() {
