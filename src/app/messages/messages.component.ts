@@ -8,6 +8,7 @@ import { User } from '../user/user';
 import { UserService } from '../user/user.service';
 import { UserProfileService } from '../user-profile/user-profile.service';
 
+
 @Component({
   selector: 'app-messages',
   templateUrl: './messages.component.html',
@@ -20,6 +21,10 @@ export class MessagesComponent implements OnInit {
   user: User = new User();
   filteredUsersList: any[];
   query: any;
+  messages: Messages[] = [];
+  loggedUserId: any = '';
+  showMessage: Boolean = false;
+  currentMessage: Messages = new Messages();
 
 
   constructor(private messagesService: MessagesService,
@@ -32,10 +37,30 @@ export class MessagesComponent implements OnInit {
     const user = JSON.parse(localStorage.getItem('currentUser'));
     this.userProfileService.getUserByUsername(user.username).then(res => {
       this.message.sender = res['id'];
+      this.messagesService.getAllMessagesByUserId(res['id']).then(
+        (ress: Messages[]) => {
+          for (const message of ress) {
+            this.userService.getUserNameById(message.receiver).then(
+              (resss: any) => {
+                message.sender = resss.name;
+              }).catch(err => {
+                console.error(err);
+              }
+            );
+            this.messages.push(message);
+          }
+          this.messages = ress.reverse();
+        }).catch(err => {
+          console.error(err);
+        }
+      );
       console.log(this.user);
       }).catch(err => {
       console.error(err);
     });
+
+
+
 
   }
   sendMessage() {
@@ -73,6 +98,26 @@ filterUsers(query, users: User[]): any[] {
   return filtered;
 }
 
+loadMessage(id: String) {
+  for (const message of this.messages){
+    if (message.id === Number(id)) {
+        message.seen = true;
+        this.currentMessage = message;
+    }
+  }
 
+  this.messagesService.updateMessage(this.currentMessage.id).then(res => {
+    // this.location.back();
+
+  }).catch(err => {
+    console.error(err);
+  });
+
+  this.showMessage = true;
+}
+
+changeView() {
+  this.showMessage = false;
+}
 
 }

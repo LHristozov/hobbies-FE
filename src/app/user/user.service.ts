@@ -14,6 +14,15 @@ export class UserService {
       return this.httpClient.get(`${SERVER_DOMAIN}/getAllUsers`).toPromise();
   }
 
+    getUserNameById(id: Number) {
+      return this.httpClient.get(`${SERVER_DOMAIN}/getUserNameById/${id}`).toPromise();
+    }
+
+
+    // getUserNameById(id: String): Observable<any> {
+    //   return this.httpClient.get(`${SERVER_DOMAIN}/getUserNameById/${id}`);
+    // }
+
      getAll() {
     return this.http.get<User[]>('/api/users');
   }

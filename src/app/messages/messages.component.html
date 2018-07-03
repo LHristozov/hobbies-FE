@@ -1,18 +1,72 @@
-<h3>Send To:</h3>
-<p-autoComplete [(ngModel)]="user" [suggestions]="filteredUsersList"
-(onSelect)="setUserId($event)" (completeMethod)="filter($event)"
- field="username" [size]="50" placeholder="Begin writing username" [minlength]="1"
- [forceSelection]="true" >
-</p-autoComplete>
 
 
-<h3 class="first">Default</h3>
-{{message.sender}}
-  <div>
-    <h3>Message: </h3>
-    <textarea [(ngModel)]="message.content" placeholder="begin writing your message"
-      rows="7" cols="60" pInputTextarea></textarea>
-  </div>
+  <div class="w3-container w3-content" style="max-width:1470px;margin-top:80px">
+      <!-- The Grid -->
+      <div class="w3-row">
+        <!-- Left Column -->
+        <div class="w3-col m3">
+            <div *ngFor="let message of messages" class="messageDiv" (click)="loadMessage(message.id)" [class.unread]="message.seen == false" >
+              <div>
+                  <a style="pointer-events: none;" >{{message.sender}}</a>
+                  <a style="pointer-events: none; float: right;">{{message.date | date:'medium'}}</a>
+              </div>
+              <div style="border-top: groove;padding: 5px;">
+                    <a style="pointer-events: none;">{{message.content.substring(0, 60)}}</a>
+                    <a style="pointer-events: none;" *ngIf="message.content.length > 60 ">...</a>
+              </div>
 
-  <button pButton type="button" (click)="sendMessage()" lable="Send Message">Send</button>
+            </div>
 
+          <!-- End Left Column -->
+        </div>
+
+        <!-- Middle Column -->
+        <div class="w3-col m7">
+          <div class="w3-row-padding">
+            <div class="w3-col m12">
+              <div class="w3-card w3-round w3-white">
+                <div class="send-massage-div" *ngIf="!showMessage;  else messageContent">
+                    <h3>Send To:</h3>
+                    <p-autoComplete [(ngModel)]="user" [suggestions]="filteredUsersList"
+                    (onSelect)="setUserId($event)" (completeMethod)="filter($event)"
+                     field="username" [size]="50" placeholder="Begin writing username" [minlength]="1"
+                     [forceSelection]="true" >
+                    </p-autoComplete>
+                      <div>
+                        <h3>Message: </h3>
+                        <textarea [(ngModel)]="message.content" placeholder="Write your message"
+                          rows="7" cols="60" pInputTextarea></textarea>
+                      </div>
+                      <button pButton type="button" class="sendBtn" (click)="sendMessage()" lable="Send Message">Send</button>
+                 </div>
+
+                 <ng-template #messageContent>
+                    <div class="message-content-div">
+                      <div style="font-size: 18px;">
+                        <a style="pointer-events: none;">From: {{currentMessage.sender}}</a>
+                        <a style="pointer-events: none; float: right;">{{currentMessage.date | date:'medium'}}</a>
+                      </div>
+                      <div style="margin-top: 20px;">
+                        <h4>Message: </h4>
+                        <textarea disabled rows="7" cols="60" pInputTextarea>{{currentMessage.content}}</textarea>
+                      </div>
+                    </div>
+                  </ng-template>
+
+
+              </div>
+            </div>
+          </div>
+
+
+          <!-- End Middle Column -->
+        </div>
+
+
+        <!-- End Grid -->
+      </div>
+      <div>
+          <a class="ui button mybutton" (click)=changeView() >+</a>
+        </div>
+      <!-- End Page Container -->
+    </div>

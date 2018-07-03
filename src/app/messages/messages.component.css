@@ -1,0 +1,53 @@
+:host {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.sendBtn{
+  width: 100px;
+  height: 34px;
+  font-size: 20px;
+}
+
+.unread{
+  background: lightgrey;
+}
+
+.messageDiv{
+  border: groove;
+  padding:0px 7px 2px 4px;
+}
+.messageDiv:hover{
+  background:grey;
+}
+
+.send-massage-div{
+  padding:16px;
+}
+.message-content-div{
+  padding:16px;
+}
+textarea:disabled {
+  background:white;
+  opacity: 1;
+}
+
+
+.mybutton {
+  padding: 13px !important;
+  z-index: 15;
+  text-align: center;
+  font-size: 26px;
+  line-height: 26px;
+  position: fixed;
+  bottom: 50px;
+  right: 50px;
+  color: white;
+  border-radius: 50px;
+  border-color: #08806c;
+  background-color: #db4437;
+  width: 56px;
+  height: 56px;
+  transition-property: background-color,box-shadow;
+}
