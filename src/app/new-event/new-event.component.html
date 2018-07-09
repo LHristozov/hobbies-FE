@@ -4,7 +4,7 @@
 <div class="w3-container w3-content" style="max-width:1400px;margin-top:80px">
   <!-- The Grid -->
   <div class="w3-row">
-    
+
       <!-- Left Column -->
       <div class="w3-col m6">
         <!-- Profile -->
@@ -66,8 +66,15 @@
                       </div>
                     </div>
                   </div>
+                  <div class="ui segment  w3-col m6" style="width: 45%;">
+                      <sui-select class="selection" placeholder="Select Category" [(ngModel)]="model.category" [options]="categories" labelField="name" name="category"
+                        #category="ngModel" #select2>
+                        <sui-select-option *ngFor="let option2 of select2.filteredOptions" [value]="option2">
+                        </sui-select-option>
+                      </sui-select>
+                    </div>
               </div>
-              
+
               <p>
                   <div class="form-group padding center ">
                       <button [disabled]="loading" type="submit" class="w3-button w3-theme">
@@ -109,9 +116,9 @@
                   </div>
                   </div>
 
-                  <!-- 
+                  <!--
                 <form name="form" style="font-size: 18px;" (ngSubmit)="f.form.valid && update()" #f="ngForm" novalidate>
-           
+
 
                 </form> -->
                 </div>
@@ -123,7 +130,7 @@
           </div>
         </div>
         <!-- End Middle Column -->
-  
+
     </div>
     <!-- End Grid -->
   </div>

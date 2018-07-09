@@ -1,7 +1,9 @@
+<div *ngIf='isOwner'>
+    <a style="float: right;" class="ui button mybutton"(click)="delete()" >X</a>
+</div>
 <div class="w3-container w3-content" style="max-width:1400px;margin-top:80px">
   <!-- The Grid -->
   <div class="w3-row">
-
     <!-- Left Column -->
     <div class="w3-col m5">
       <!-- Profile -->
@@ -63,6 +65,12 @@
                       <button style="height: 43px;" [disabled]="loading" class="w3-button w3-theme" (click)="registerForEvent()">
                         <i class="calendar check icon"></i> &nbsp;Join The Event
                       </button>
+
+                      <div>
+                    </div>
+
+
+
                     </div>
                     <!-- <button pButton type="button" (click)="registerForEvent()" lable="Register for Event">Register for Event</button> -->
 
@@ -116,7 +124,7 @@
 
 
 
-  <!-- 
+  <!--
 
 <div><a>Event INfo page</a></div>
 

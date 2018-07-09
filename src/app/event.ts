@@ -10,6 +10,7 @@ export class Event {
     public meetingPoint?: MeetingPoint,
     public owner?: User,
     public destination?: Destination,
+    public category?: any,
     public eventDate?: Date,
   ) { }
 }

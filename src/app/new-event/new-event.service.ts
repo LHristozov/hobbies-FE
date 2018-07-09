@@ -13,4 +13,8 @@ export class NewEventService {
         return this.httpClient.post(`${SERVER_DOMAIN}/events/saveEvent`, event).toPromise();
     }
 
+    getAllCategories() {
+      return this.httpClient.get(`${SERVER_DOMAIN}/getAllCategories`).toPromise();
+  }
+
 }

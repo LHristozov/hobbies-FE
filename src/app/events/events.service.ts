@@ -13,6 +13,9 @@ export class EventsService {
         return this.httpClient.get(`${SERVER_DOMAIN}/events`).toPromise();
     }
 
+    getRecommended(username: String): Observable<any> {
+    return this.httpClient.get(`${SERVER_DOMAIN}/events/getRecommended/${username}`);
+  }
     getUserEvents(name: String): Observable<any> {
       return this.httpClient.get(`${SERVER_DOMAIN}/events/getEventsByUser/${name}`);
     }
@@ -20,6 +23,6 @@ export class EventsService {
     getNextEventByUser(name: String): Observable<any> {
         return this.httpClient.get(`${SERVER_DOMAIN}/events/getNextEventByUser/${name}`);
       }
-    
+
 
 }

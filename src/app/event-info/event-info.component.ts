@@ -28,6 +28,7 @@ export class EventInfoComponent implements OnInit, OnDestroy {
   lng: Number = 0;
   zoom = 16;
   currentImg: any = "";
+  isOwner: Boolean = false;
 
   private _routeSubscription: Subscription = new Subscription();
 
@@ -50,6 +51,9 @@ export class EventInfoComponent implements OnInit, OnDestroy {
         debugger;
         this.lat = Number(res.meetingPoint.lat);
         this.lng = Number(res.meetingPoint.lon);
+        if (this.owner.username === this.event.owner.username) {
+          this.isOwner = true;
+        }
 
         // Event img is the first img from the destination
         this.eventInfoService.getEventImgs(res.destination.name).subscribe(
@@ -134,16 +138,26 @@ export class EventInfoComponent implements OnInit, OnDestroy {
     );
   }
 
+delete() {
+  debugger;
+  this.eventInfoService.deleteEvent(this.event).subscribe(
+    (res: any) => {
 
+    },
+    err => {
+      console.error(err);
+    }
+  );
+}
 
   myFunction(id) {
     var x = document.getElementById(id);
     if (x.className.indexOf("w3-show") == -1) {
         x.className += " w3-show";
         x.previousElementSibling.className += " w3-theme-d1";
-    } else { 
+    } else {
         x.className = x.className.replace("w3-show", "");
-        x.previousElementSibling.className = 
+        x.previousElementSibling.className =
         x.previousElementSibling.className.replace(" w3-theme-d1", "");
     }
 }

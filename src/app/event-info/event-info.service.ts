@@ -39,6 +39,10 @@ export class EventInfoService {
     return this.httpClient.post(`${SERVER_DOMAIN}/events/registerForEvent`, event);
   }
 
+  deleteEvent(event: Event): Observable<any> {
+    return this.httpClient.post(`${SERVER_DOMAIN}/events/deleteEvent`, event);
+  }
+
   // saveComment(): Observable<any>{
   //   return
   // }

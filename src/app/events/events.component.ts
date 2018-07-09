@@ -13,6 +13,8 @@ export class EventsComponent implements OnInit {
     events: any;
     netImage: any = '';
     moment = moment;
+    recommendedEvents: any;
+    username: any = '';
 
   constructor(private eventsService: EventsService) { }
 
@@ -25,6 +27,8 @@ export class EventsComponent implements OnInit {
       //     console.error(err);
       // });
 
+      const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+      this.username = currentUser.username;
 
       this.eventsService.getAllEvents().then( (res: any) => {
         for (let event of res){
@@ -34,6 +38,20 @@ export class EventsComponent implements OnInit {
       }).catch(err => {
         console.error(err);
       });
+
+      debugger;
+
+      this.eventsService.getRecommended(this.username).subscribe(
+        (ress: any) => {
+          ress.destination.netImage = '../assets/upload-dir/' + ress.destination.name + '/' + '1.jpg';
+          this.recommendedEvents = ress;
+        },
+        err => {
+          console.error(err);
+        }
+      );
+
+
 
   }
 

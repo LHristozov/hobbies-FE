@@ -20,6 +20,7 @@ export class NewEventComponent implements OnInit {
   model: Event = new Event();
   owner: User = new User();
   destinations: Destination[] =  [];
+  categories: any[] =  [];
   meetingPoint: MeetingPoint = new MeetingPoint();
 
   lat = 42.14360940298495;
@@ -42,6 +43,12 @@ export class NewEventComponent implements OnInit {
         this.destinations = res;
       },
       (err) => {
+        console.error(err);
+      });
+
+      this.newEventService.getAllCategories().then( (res: any) => {
+        this.categories =  res;
+      }).catch(err => {
         console.error(err);
       });
 
